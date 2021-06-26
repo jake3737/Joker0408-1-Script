@@ -80,9 +80,6 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         if ($.tuanList.length) console.log(`开始账号内部互助 赚京豆-瓜分京豆 活动，优先内部账号互助`)
         for (let j = 0; j < $.tuanList.length; ++j) {
           console.log(`账号 ${$.UserName} 开始给 【${$.tuanList[j]['assistedPinEncrypted']}】助力`)
-          await helpFriendTuan($.tuanList[j])
-          if(!$.canHelp) break
-          await $.wait(200)
         }
       }
       if ($.canHelp) {
