@@ -8,7 +8,7 @@ const vm = require('vm');
 const PNG = require('png-js');
 const UA = require('./USER_AGENTS.js').USER_AGENT;
 
-
+##cron "55-59 59 7,15,23 * * *"
 Math.avg = function average() {
   var sum = 0;
   var len = this.length;
