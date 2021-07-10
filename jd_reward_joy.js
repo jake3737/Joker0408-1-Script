@@ -1,5 +1,5 @@
 let common = require("./utils/common");
-let $ = new common.env('宠汪汪兑换京豆');
+const $ = new Env('宠汪汪兑换京豆');
 let fs = require("fs"); 
 $.setOptions({
     headers: {
