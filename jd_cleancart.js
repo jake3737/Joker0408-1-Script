@@ -9,14 +9,14 @@
 ==============Quantumult X===========
 [task_local]
 #清空购物车
-55 */8 * * * jd_cleancart.js, tag=清空购物车, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+0 9,15,21 * * * jd_cleancart.js, tag=清空购物车, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 ===========Loon============
 [Script]
-cron "55 */8 * * *" script-path=jd_cleancart.js,tag=清空购物车
+cron "0 9,15,21 * * *" script-path=jd_cleancart.js,tag=清空购物车
 ============Surge=============
-清空购物车 = type=cron,cronexp="55 */8 * * *",wake-system=1,timeout=3600,script-path=jd_cleancart.js
+清空购物车 = type=cron,cronexp="0 9,15,21 * * *",wake-system=1,timeout=3600,script-path=jd_cleancart.js
 ===========小火箭========
-清空购物车 = type=cron,script-path=jd_cleancart.js, cronexpr="55 */8 * * *", timeout=3600, enable=true
+清空购物车 = type=cron,script-path=jd_cleancart.js, cronexpr="0 9,15,21 * * *", timeout=3600, enable=true
  */
 const $ = new Env('清空购物车');
 //Node.js用户请在jdCookie.js处填写京东ck;
