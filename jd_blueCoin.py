@@ -156,7 +156,7 @@ class getJDCookie(object):
         except Exception:
             context = f"账号{userNum}【{pinName}】Cookie 已失效！请重新获取。"
             printT(context)
-            return ck, False
+            return ck, True
 
     def iscookie(self):
         """
