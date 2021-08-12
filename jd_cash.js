@@ -3,7 +3,7 @@
 可互助，助力码每日不变，只变日期
 活动入口：京东APP搜索领现金进入
 更新时间：2021-06-07
-0 0-20/5 * * *
+0 0-20/5 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_cash.js
 */
 const $ = new Env('签到领现金');
 const notify = $.isNode() ? require('./sendNotify') : '';
