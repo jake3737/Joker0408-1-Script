@@ -3,7 +3,7 @@ Modified time: 2021-06-9 15:25:41
 统计昨日京豆的变化情况，包括收入，支出，以及显示当前京豆数量,目前小问题:下单使用京豆后,退款重新购买,计算统计会出现异常
 统计红包以及过期红包
 网页查看地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
-0 9,18 * * *
+0 9,18 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_bean_change.js
 */
 const $ = new Env('京东资产变动通知');
 const notify = $.isNode() ? require('./sendNotify') : '';
