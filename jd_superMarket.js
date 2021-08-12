@@ -1,7 +1,7 @@
 /*
 东东超市
 Last Modified time: 2021-3-4 21:22:37
-0 8-20/4 * * *
+0 8-20/4 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_superMarket.js
 */
 const $ = new Env('东东超市');
 //Node.js用户请在jdCookie.js处填写京东ck;
