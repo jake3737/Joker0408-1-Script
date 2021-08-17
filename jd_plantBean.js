@@ -1,6 +1,6 @@
 /*
 种豆得豆 脚本更新地址：jd_plantBean.js
-更新时间：2021-04-9
+更新时间：2021-08-9
 活动入口：京东APP我的-更多工具-种豆得豆
 15 8-20/6 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_plantBean.js
 */
