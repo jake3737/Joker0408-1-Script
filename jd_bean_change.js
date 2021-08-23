@@ -66,7 +66,7 @@ if ($.isNode()) {
 
       $.pet = ''; // 东东萌宠
       $.fruit = ''; // 东东农场
-//      $.egg = ''; // 京喜牧场
+      $.egg = ''; // 京喜牧场
       await TotalBean();
       console.log(
         `\n********开始【京东账号${$.index}】${
