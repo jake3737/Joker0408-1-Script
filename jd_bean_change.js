@@ -99,7 +99,7 @@ async function showMsg() {
     //   await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}`, `账号${$.index}：${$.nickName || $.UserName}\n昨日收入：${$.incomeBean}京豆 🐶\n昨日支出：${$.expenseBean}京豆 🐶\n当前京豆：${$.beanCount}京豆 🐶${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
     // }
 
-    ReturnMessage=`======== 京东账号${$.index} ========\n\n`
+    ReturnMessage=`===== 京东账号${$.index} =====\n\n`
     ReturnMessage+=`🥷账号昵称：${$.nickName || $.UserName}\n`;
     ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
@@ -148,7 +148,7 @@ async function showMsg() {
 
         }
     }
-    ReturnMessage+=`======== 红包明细 ========`;
+    ReturnMessage+=`###### 红包明细 ######`;
     ReturnMessage+=`${$.message}\n\n`;
     allMessage+=ReturnMessage;
     $.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
