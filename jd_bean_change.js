@@ -1,8 +1,7 @@
 /*
-京东资产：jd_bean_change.js
 Modified time: 2021-08-25 15:25:41
 统计昨日京豆的变化情况，包括收入，支出，以及显示当前京豆数量,统计红包以及过期红包，东东萌宠、东东农场、京喜牧场等进度
-网页查看地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
+网页查看京豆地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
 cron : 0 9,18 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_bean_change.js
  */
 
@@ -99,7 +98,7 @@ async function showMsg() {
     //   await notify.sendNotify(`${$.name} - 🥷京东账号${$.index} - ${$.nickName}`, `🥷京东账号${$.index}：${$.nickName || $.UserName}\n🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
     // }
 
-    ReturnMessage=`===== 京东账号${$.index} =====\n\n`
+    ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🥷账号昵称：${$.nickName || $.UserName}\n`;
     ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
 ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
