@@ -149,7 +149,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
 
         }
     }
-    ReturnMessage+=`###### 红包明细 ######`;
+    ReturnMessage+=`\n###### 红包明细 ######\n`;
     ReturnMessage+=`${$.message}\n\n`;
     allMessage+=ReturnMessage;
     $.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
