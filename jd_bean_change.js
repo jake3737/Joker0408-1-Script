@@ -397,7 +397,7 @@ function redPacket() {
                         $.jdhRed = $.jdhRed.toFixed(2)
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
-                        $.message += `\n🧧总计红包：${$.balance}(今日总过期${$.expiredBalance})元 \n 🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
+                        $.message += `\n🧧总计红包：${$.balance}(今日总过期${$.expiredBalance})元 \n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
