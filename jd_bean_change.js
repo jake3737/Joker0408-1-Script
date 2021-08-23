@@ -104,7 +104,7 @@ async function showMsg() {
     ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
-    ReturnMessage+=`🐶当前京豆：${$.beanCount}(今日过期${$.expirejingdou})京豆\n`;
+    ReturnMessage+=`🐶总计京豆：${$.beanCount}(今日过期${$.expirejingdou})京豆\n`;
 
     if(typeof $.JDEggcnt !== "undefined"){
 //        ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
@@ -396,7 +396,7 @@ function redPacket() {
                         $.jdhRed = $.jdhRed.toFixed(2)
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
-                        $.message += `\n🧧当前总红包：${$.balance}(今日总过期${$.expiredBalance})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
+                        $.message += `\n🧧总计红包：${$.balance}(今日总过期${$.expiredBalance})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
