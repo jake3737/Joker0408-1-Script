@@ -120,8 +120,8 @@ async function showMsg() {
     }
     if($.JdFarmProdName != ""){
         if($.JdtreeEnergy!=0){
-            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%`;
-            if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
+            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
+             if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
                 ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑\n`;
             } else {
                 ReturnMessage+=`\n`;
@@ -143,7 +143,7 @@ async function showMsg() {
         $.petInfo = initPetTownRes.result;
         if (response.resultCode === '0') {
             ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName},`;
-            ReturnMessage += `勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块(${response.result.medalPercent}%)\n`;
+            ReturnMessage += `进度：勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块(${response.result.medalPercent}%)\n`;
             //ReturnMessage += `          已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
 
         }
