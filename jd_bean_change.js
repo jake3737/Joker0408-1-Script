@@ -116,7 +116,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
         ReturnMessage+=`💰京东赚赚：${$.JdzzNum}金币(≈${$.JdzzNum / 10000}元)\n`;
     }
     if($.JdMsScore!=0){
-        ReturnMessage+=`💰京东秒杀：${$.JdMsScore}秒秒币(≈${$.JdMsScore / 1000}元)\n`;
+//        ReturnMessage+=`💰京东秒杀：${$.JdMsScore}秒秒币(≈${$.JdMsScore / 1000}元)\n`;
     }
     if($.JdFarmProdName != ""){
         if($.JdtreeEnergy!=0){
@@ -750,7 +750,7 @@ function getJxFactory() {
                                     $.commodityDimId = production.commodityDimId;
                                     // subTitle = data.user.pin;
                                     await GetCommodityDetails();//获取已选购的商品信息
-                                    infoMsg = `${$.jxProductName} ,进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
+                                    infoMsg = `${$.jxProductName},进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
                                             infoMsg = `${$.productName} ,已经可兑换`;
