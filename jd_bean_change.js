@@ -762,7 +762,7 @@ function getJxFactory() {
                                         }
                                         // await exchangeProNotify()
                                     } else {
-                                        infoMsg += ` ,预计：${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天可兑换`
+                                        infoMsg += ` ,预计：${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天后可兑换`
                                     }
                                     if (production.status === 3) {
                                         infoMsg = "${$.productName} ,已经超时失效"
@@ -771,7 +771,7 @@ function getJxFactory() {
                                     $.unActive = false;//标记是否开启了京喜活动或者选购了商品进行生产
                                     if (!data.factoryList) {
                                         infoMsg = "活动未开启"
-                                        // $.msg($.name, '【提示】', `京东账号${$.index}[${$.nickName}]京喜工厂活动未开启\n请手动去开启活动`);
+                                        // $.msg($.name, '【提示】', `京东账号${$.index}[${$.nickName}]京喜工厂未开启\n请手动开启活动`);
                                     } else if (data.factoryList && !data.productionList) {
                                         infoMsg = "活动未开启"
                                     }
