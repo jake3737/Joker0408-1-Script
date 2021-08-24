@@ -127,7 +127,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
                 ReturnMessage+=`\n`;
             }
         } else {
-            ReturnMessage+=`东东农场：${$.JdFarmProdName}\n`;
+            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
         }
     }
     if ($.jxFactoryInfo) {
