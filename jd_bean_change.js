@@ -122,7 +122,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
         if($.JdtreeEnergy!=0){
             ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
-                ReturnMessage+=`,预计：${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑换\n`;
+                ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑换\n`;
             } else {
                 ReturnMessage+=`\n`;
             }
@@ -750,7 +750,7 @@ function getJxFactory() {
                                     $.commodityDimId = production.commodityDimId;
                                     // subTitle = data.user.pin;
                                     await GetCommodityDetails();//获取已选购的商品信息
-                                    infoMsg = `${$.jxProductName} ,进度： (${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
+                                    infoMsg = `${$.jxProductName} ,进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
                                             infoMsg = `${$.productName} ,已经可兑换`;
@@ -762,7 +762,7 @@ function getJxFactory() {
                                         }
                                         // await exchangeProNotify()
                                     } else {
-                                        infoMsg += ` ,预计：${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天后可兑换`
+                                        infoMsg += `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天后可兑换`
                                     }
                                     if (production.status === 3) {
                                         infoMsg = "${$.productName} ,已经超时失效"
