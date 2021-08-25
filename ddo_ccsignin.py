@@ -1,7 +1,6 @@
 # 领券中心签到
-'''
-cron:48 5 * * *
-'''
+# 48 5 * * *
+
 import time
 import requests
 import json
