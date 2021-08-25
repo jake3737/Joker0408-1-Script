@@ -1,7 +1,6 @@
 # 清空购物车
-'''
-cron:0 18 * * *
-'''
+# 0 18 * * *
+
 import time
 
 import requests
