@@ -49,7 +49,7 @@ if ($.isNode()) {
             $.expiredBalance = 0;
             $.JdzzNum=0;
             $.JdMsScore = 0;
-            $.totalMoney = '';
+            $.totalMoney = 0;
             $.JdFarmProdName = '';
             $.JdtreeEnergy=0;
             $.JdtreeTotalEnergy=0;
