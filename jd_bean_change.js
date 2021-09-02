@@ -49,7 +49,7 @@ if ($.isNode()) {
             $.expiredBalance = 0;
             $.JdzzNum=0;
             $.JdMsScore = 0;
-            $.JD_cash_total = 0;
+            $.JD_cash_total =0;
             $.JdFarmProdName = '';
             $.JdtreeEnergy=0;
             $.JdtreeTotalEnergy=0;
@@ -73,7 +73,7 @@ if ($.isNode()) {
             await getMs();
             await jdfruitRequest('taskInitForFarm', {"version":14,"channel":1,"babelChannel":"120"});
             await getjdfruit();
-            await cash();
+            await jdcash();
             await requestAlgo();
             await JxmcGetRequest();
             await bean();
