@@ -49,7 +49,7 @@ if ($.isNode()) {
             $.expiredBalance = 0;
             $.JdzzNum=0;
             $.JdMsScore = 0;
-            $.JD_cash_total = '';
+            $.totalMoney = '';
             $.JdFarmProdName = '';
             $.JdtreeEnergy=0;
             $.JdtreeTotalEnergy=0;
@@ -115,8 +115,8 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n`;
 
-    if (typeof $.JD_cash_total !== "undefined") {
-      ReturnMessage += `💴签到现金：${$.JD_cash_total}元\n`;
+    if (typeof $.totalMoney !== "undefined") {
+      ReturnMessage += `💴签到现金：${$.totalMoney}元\n`;
     } 
     if(typeof $.JDEggcnt !== "undefined"){
 /*        ReturnMessage+=`京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
