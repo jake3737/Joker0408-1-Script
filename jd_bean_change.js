@@ -2,7 +2,7 @@
 Modified time: 2021-08-25 15:25:41
 统计昨日京豆的变化情况，包括收入，支出，以及显示当前京豆数量,统计红包以及过期红包，东东萌宠、东东农场、京喜牧场等进度
 网页查看京豆地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
-cron : 0 9,18 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_bean_change.js
+cron : 0 9,19 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_bean_change.js
  */
 
 const $ = new Env('京东资产通知');
@@ -49,6 +49,7 @@ if ($.isNode()) {
             $.expiredBalance = 0;
             $.JdzzNum=0;
             $.JdMsScore = 0;
+            $.JD_cash_total = 0;
             $.JdFarmProdName = '';
             $.JdtreeEnergy=0;
             $.JdtreeTotalEnergy=0;
@@ -103,11 +104,11 @@ async function showMsg() {
     //allMessage += `🥷京东昵称${$.index}：${$.nickName || $.UserName}\n🐶今日收入：${$.todayIncomeBean}京豆 \n 🐶今日过期：${$.expirejingdou}) \n 🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount} 京豆${$.message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
 
     // if ($.isNode()) {
-    //   await notify.sendNotify(`${$.name} - 🥷京东昵称${$.index} - ${$.nickName}`, `🥷京东昵称${$.index}：${$.nickName || $.UserName}\n🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
+    //   await notify.sendNotify(`${$.name} - 🐵京东昵称${$.index} - ${$.nickName}`, `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
     // }
 
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
-    ReturnMessage+=`🥷账号昵称：${$.nickName || $.UserName}\n`;
+    ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
     ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
 ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
@@ -118,7 +119,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
       ReturnMessage += `💴签到现金：${$.JD_cash_total}元\n`;
     } 
     if(typeof $.JDEggcnt !== "undefined"){
-/*        ReturnMessage+=`🥚京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
+/*        ReturnMessage+=`京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }*/
     if(typeof $.JDtotalcash !== "undefined"){
         ReturnMessage+=`💰极速金币：${$.JDtotalcash}金币(${$.JDtotalcash / 10000}元)\n`;
@@ -126,9 +127,9 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     if(typeof $.JdzzNum !== "undefined"){
         ReturnMessage+=`💰京东赚赚：${$.JdzzNum}金币(${$.JdzzNum / 10000}元)\n`;
     }
-/*    if($.JdMsScore!=0){
+    if($.JdMsScore!=0){
         ReturnMessage+=`💰京东秒杀：${$.JdMsScore}秒秒币(${$.JdMsScore / 1000}元)\n`;
-    }*/
+    }
     if($.JdFarmProdName != ""){
 
             ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
@@ -159,7 +160,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
 
         }
     }
-    ReturnMessage+=`====== 红包明细 ======`;
+    ReturnMessage+=`\n====== 红包明细 ======\n`;
     ReturnMessage+=`${$.message}`;
     allMessage+=ReturnMessage;
     $.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
