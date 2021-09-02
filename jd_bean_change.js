@@ -122,7 +122,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
 /*        ReturnMessage+=`京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }*/
     if(typeof $.JDtotalcash !== "undefined"){
-        ReturnMessage+=`💰极速金币：${$.JDtotalcash}金币(${$.JDtotalcash / 10000}元)\n`;
+        ReturnMessage+=`\n💰极速金币：${$.JDtotalcash}金币(${$.JDtotalcash / 10000}元)\n`;
     }
     if(typeof $.JdzzNum !== "undefined"){
         ReturnMessage+=`💰京东赚赚：${$.JdzzNum}金币(${$.JdzzNum / 10000}元)\n`;
@@ -160,7 +160,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
 
         }
     }
-    ReturnMessage+=`\n====== 红包明细 ======\n`;
+    ReturnMessage+=`\n`;
     ReturnMessage+=`${$.message}`;
     allMessage+=ReturnMessage;
     $.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
