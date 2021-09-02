@@ -49,7 +49,7 @@ if ($.isNode()) {
             $.expiredBalance = 0;
             $.JdzzNum=0;
             $.JdMsScore = 0;
-            $.totalMoney = 0;
+//            $.totalMoney = 0;
             $.JdFarmProdName = '';
             $.JdtreeEnergy=0;
             $.JdtreeTotalEnergy=0;
@@ -101,7 +101,7 @@ if ($.isNode()) {
     })
 async function showMsg() {
     if ($.errorMsg) return
-    //allMessage += `🥷京东昵称${$.index}：${$.nickName || $.UserName}\n🐶今日收入：${$.todayIncomeBean}京豆 \n 🐶今日过期：${$.expirejingdou}) \n 🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount} 京豆${$.message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
+    //allMessage += `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶今日收入：${$.todayIncomeBean}京豆 \n 🐶今日过期：${$.expirejingdou}) \n 🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount} 京豆${$.message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
 
     // if ($.isNode()) {
     //   await notify.sendNotify(`${$.name} - 🐵京东昵称${$.index} - ${$.nickName}`, `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
@@ -115,9 +115,9 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n`;
 
-    if (typeof $.totalMoney !== "undefined") {
+/*    if (typeof $.totalMoney !== "undefined") {
       ReturnMessage += `💴签到现金：${$.totalMoney}元\n`;
-    } 
+    } */
     if(typeof $.JDEggcnt !== "undefined"){
 /*        ReturnMessage+=`京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }*/
