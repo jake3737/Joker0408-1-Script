@@ -10,6 +10,8 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent =  $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``):``;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+//通知分为单账号 默认 false,环境变量 BEAN_CHANGE_NOTIFYTIP
+const notifyTip = $.isNode() ? process.env.BEAN_CHANGE_NOTIFYTIP : true;
 let allMessage = '';
 let ReturnMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
@@ -74,17 +76,23 @@ if ($.isNode()) {
             await requestAlgo();
             await JxmcGetRequest();
             await bean();
-            await getJxFactory();   //惊喜工厂
-            await getDdFactoryInfo(); // 京东工厂
+            await getJxFactory();   
+            await getDdFactoryInfo(); 
             await showMsg();
         }
+        if ($.isNode() && notifyTip && allMessage) {
+            console.log("单账号通知")
+            await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
+            allMessage=""
+        }
     }
-
-    if ($.isNode() && allMessage) {
+    if ($.isNode() && !notifyTip && allMessage) {
+        console.log("多账号合并通知")
         await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
     }
 })()
     .catch((e) => {
+
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     })
     .finally(() => {
@@ -106,20 +114,23 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n`;
 
+    if (typeof $.JD_cash_total !== "undefined") {
+      ReturnMessage += `💴签到现金：${$.JD_cash_total}元\n`;
+    } 
     if(typeof $.JDEggcnt !== "undefined"){
-//        ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
+//        ReturnMessage+=`🥚京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }
     if(typeof $.JDtotalcash !== "undefined"){
-        ReturnMessage+=`💰极速金币：${$.JDtotalcash}金币(${$.JDtotalcash / 10000}元)\n`;
+        ReturnMessage+=`💰极速金币：${$.JDtotalcash}金币(≈${$.JDtotalcash / 10000}元)\n`;
     }
     if(typeof $.JdzzNum !== "undefined"){
-        ReturnMessage+=`💰京东赚赚：${$.JdzzNum}金币(${$.JdzzNum / 10000}元)\n`;
+        ReturnMessage+=`💰京东赚赚：${$.JdzzNum}金币(≈${$.JdzzNum / 10000}元)\n`;
     }
     if($.JdMsScore!=0){
-//        ReturnMessage+=`💰京东秒杀：${$.JdMsScore}秒秒币(${$.JdMsScore / 1000}元)\n`;
+//        ReturnMessage+=`💰京东秒杀：${$.JdMsScore}秒秒币(≈${$.JdMsScore / 1000}元)\n`;
     }
     if($.JdFarmProdName != ""){
-        if($.JdtreeEnergy!=0){
+
             ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
                 ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑换\n`;
@@ -149,7 +160,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
         }
     }
     ReturnMessage+=`====== 红包明细 ======`;
-    ReturnMessage+=`${$.message}\n\n`;
+    ReturnMessage+=`${$.message}`;
     allMessage+=ReturnMessage;
     $.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
 }
@@ -211,8 +222,8 @@ async function bean() {
     }
     await queryexpirejingdou();//过期京豆
     await redPacket();//过期红包
-    // console.log(`🐶昨日收入：${$.incomeBean}个京豆 `);
-    // console.log(`🐶昨日支出：${$.expenseBean}个京豆 `)
+    // console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
+    // console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
 }
 function TotalBean() {
     return new Promise(async resolve => {
@@ -323,7 +334,7 @@ function queryexpirejingdou() {
                             })
                             $.expirejingdou = data['expirejingdou'][0]['expireamount'];
                             // if ($.expirejingdou > 0) {
-                            //   $.message += `\n🐶今日过期：${$.expirejingdou}京豆 `;
+                            //   $.message += `\n今日将过期：${$.expirejingdou}京豆 🐶`;
                             // }
                         }
                     } else {
@@ -390,9 +401,9 @@ function redPacket() {
                                 }
                             }
                         }
-                        $.jdRed = $.jdRed.toFixed(2)
                         $.jxRed = $.jxRed.toFixed(2)
                         $.jsRed = $.jsRed.toFixed(2)
+                        $.jdRed = $.jdRed.toFixed(2)
                         $.jdhRed = $.jdhRed.toFixed(2)
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
