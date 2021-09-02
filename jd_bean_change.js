@@ -132,7 +132,7 @@ async function showMsg() {
     }
     if($.JdFarmProdName != ""){
 
-            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
+            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度:(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
                 ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑换\n`;
             } else {
@@ -155,7 +155,7 @@ async function showMsg() {
         $.petInfo = initPetTownRes.result;
                 if (response.resultCode === '0') {
             ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName},`;
-            ReturnMessage += `进度：勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块(${response.result.medalPercent}%)\n`;
+            ReturnMessage += `进度:勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块(${response.result.medalPercent}%)\n`;
             //ReturnMessage += `          已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
 
         }
@@ -762,7 +762,7 @@ function getJxFactory() {
                                     $.commodityDimId = production.commodityDimId;
                                     // subTitle = data.user.pin;
                                     await GetCommodityDetails();//获取已选购的商品信息
-                                    infoMsg = `${$.jxProductName},进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
+                                    infoMsg = `${$.jxProductName},进度:(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
                                             infoMsg = `${$.productName} ,已经可兑换`;
