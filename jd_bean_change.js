@@ -762,14 +762,14 @@ function getJxFactory() {
                                     $.commodityDimId = production.commodityDimId;
                                     // subTitle = data.user.pin;
                                     await GetCommodityDetails();//获取已选购的商品信息
-                                    infoMsg = `${$.jxProductName}\n🏭京喜进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
+                                    infoMsg = `${$.jxProductName}\n🏭工厂进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
-                                            infoMsg = `${$.productName}\n🏭京喜进度：已经完成生产，可兑换`;
+                                            infoMsg = `${$.productName}\n🏭工厂进度：已经完成生产，可兑换`;
                                         }
                                         if (production['exchangeStatus'] === 3) {
                                             if (new Date().getHours() === 9) {
-                                                infoMsg = `${$.productName} \n🏭京喜进度：生产已经超时失效`;
+                                                infoMsg = `${$.productName} \n🏭工厂进度：生产已经超时失效`;
                                             }
                                         }
                                         // await exchangeProNotify()
@@ -777,7 +777,7 @@ function getJxFactory() {
                                         infoMsg += `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天后可兑换`
                                     }
                                     if (production.status === 3) {
-                                        infoMsg = "${$.productName} \n🏭京喜进度：生产已经超时失效"
+                                        infoMsg = "${$.productName} \n🏭工厂进度：生产已经超时失效"
                                     }
                                 } else {
                                     $.unActive = false;//标记是否开启了京喜活动或者选购了商品进行生产
