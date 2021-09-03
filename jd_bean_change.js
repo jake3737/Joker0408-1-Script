@@ -136,7 +136,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     }
             ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
-                ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑换\n`;
+                ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天'}可兑换\n`;
             } else {
                 ReturnMessage+=`\n`;
             }
@@ -774,7 +774,7 @@ function getJxFactory() {
                                         }
                                         // await exchangeProNotify()
                                     } else {
-                                        infoMsg += `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天后可兑换`
+                                        infoMsg += `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天可兑换`
                                     }
                                     if (production.status === 3) {
                                         infoMsg = "${$.productName} \n🏭工厂进度：生产已经超时失效"
