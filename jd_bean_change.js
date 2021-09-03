@@ -134,7 +134,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     if ($.jxFactoryInfo) {
           ReturnMessage += `🏭京喜工厂：${$.jxFactoryInfo}\n`
     }
-            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName},进度:(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
+            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n进度:(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
                 ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天后'}可兑换\n`;
             } else {
@@ -153,7 +153,7 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
         $.petInfo = initPetTownRes.result;
                 if (response.resultCode === '0') {
-            ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName},`;
+            ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
             ReturnMessage += `进度:(${response.result.medalPercent}%),已收集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
             //ReturnMessage += `          已收集${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
 
@@ -762,7 +762,7 @@ function getJxFactory() {
                                     $.commodityDimId = production.commodityDimId;
                                     // subTitle = data.user.pin;
                                     await GetCommodityDetails();//获取已选购的商品信息
-                                    infoMsg = `${$.jxProductName},进度:(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
+                                    infoMsg = `${$.jxProductName}\n进度:(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
                                             infoMsg = `${$.productName} ,已经可兑换`;
