@@ -154,8 +154,8 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
         $.petInfo = initPetTownRes.result;
                 if (response.resultCode === '0') {
             ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName},`;
-            ReturnMessage += `进度:(${response.result.medalPercent}%) 已有勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
-            //ReturnMessage += `          已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
+            ReturnMessage += `进度:(${response.result.medalPercent}%),已收集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
+            //ReturnMessage += `          已收集${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
 
         }
     }
