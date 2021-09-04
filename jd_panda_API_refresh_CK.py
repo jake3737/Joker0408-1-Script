@@ -1,5 +1,5 @@
 """
-new Env('PANDA青龙全自动更新cookie');
+new Env('PanDa青龙全自动更新cookie');
 """
 # cron:50 5-23/6 * * *
 
