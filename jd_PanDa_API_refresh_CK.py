@@ -1,7 +1,7 @@
 """
 new Env('PanDa青龙全自动更新cookie');
 """
-# cron:50 5-23/6 * * *
+# cron:50 11,23 * * *
 
 import requests
 import time
