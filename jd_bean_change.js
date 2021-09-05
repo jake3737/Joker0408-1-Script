@@ -912,7 +912,7 @@ function getJxFactory() {
                                         // $.msg($.name, '【提示】', `京东账号${$.index}[${$.nickName}]京喜工厂活动未开始\n请手动去京东APP->游戏与互动->查看更多->京喜工厂 开启活动`);
                                     } else if (data.factoryList && !data.productionList) {
                                         infoMsg = ""
-                                    }
+                                        }
                                 }
                             }
                         } else {
@@ -930,7 +930,6 @@ function getJxFactory() {
         }
     )
 }
-
 // 惊喜的Taskurl
 function jxTaskurl(functionId, body = '', stk) {
     let url = `https://m.jingxi.com/dreamfactory/${functionId}?zone=dream_factory&${body}&sceneval=2&g_login_type=1&_time=${Date.now()}&_=${Date.now() + 2}&_ste=1`
