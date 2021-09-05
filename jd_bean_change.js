@@ -163,6 +163,8 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     if ($.jxFactoryInfo) {
           ReturnMessage += `🏭京喜工厂：${$.jxFactoryInfo}\n`
     }
+	if ($.jxFactoryReceive) {
+		allReceiveMessage+=`【账号${$.index} ${$.nickName || $.UserName}】${$.jxFactoryReceive} (京喜工厂)\n`;
   if($.JdFarmProdName != ""){
 	if($.JdtreeEnergy!=0){
 		if ($.treeState === 2 || $.treeState === 3) {
@@ -183,8 +185,6 @@ ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     if ($.DdFactoryReceive) {
 		allReceiveMessage+=`【账号${$.index} ${$.nickName || $.UserName}】${$.DdFactoryReceive} (东东工厂)\n`;
 	}
-	if ($.jxFactoryReceive) {
-		allReceiveMessage+=`【账号${$.index} ${$.nickName || $.UserName}】${$.jxFactoryReceive} (京喜工厂)\n`;
 	}
   const response = await await PetRequest('energyCollect');
   const initPetTownRes = await PetRequest('initPetTown');
