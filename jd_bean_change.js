@@ -101,11 +101,10 @@ if ($.isNode()) {
     })
 async function showMsg() {
     if ($.errorMsg) return
-    //allMessage += `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶今日收入：${$.todayIncomeBean}京豆 \n 🐶今日过期：${$.expirejingdou}) \n 🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount} 京豆${$.message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
-
-    // if ($.isNode()) {
-    //   await notify.sendNotify(`${$.name} - 🐵京东昵称${$.index} - ${$.nickName}`, `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
-    // }
+    /*allMessage += `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶今日收入：${$.todayIncomeBean}京豆 \n 🐶今日过期：${$.expirejingdou}) \n 🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount} 京豆${$.message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
+   if ($.isNode()) {
+     await notify.sendNotify(`${$.name} - 🐵京东昵称${$.index} - ${$.nickName}`, `🐵京东昵称${$.index}：${$.nickName || $.UserName}\n🐶昨日收入：${$.incomeBean}京豆 \n🐶昨日支出：${$.expenseBean}京豆 \n🐶总计京豆：${$.beanCount}京豆 ${$.message}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
+    */}
 
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n*************\n`;
@@ -114,100 +113,6 @@ async function showMsg() {
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n*************\n`;
-
-function redPacket() {
-    return new Promise(async resolve => {
-        const options = {
-            "url": `https://m.jingxi.com/user/info/QueryUserRedEnvelopesV2?type=1&orgFlag=JD_PinGou_New&page=1&cashRedType=1&redBalanceFlag=1&channel=1&_=${+new Date()}&sceneval=2&g_login_type=1&g_ty=ls`,
-            "headers": {
-                'Host': 'm.jingxi.com',
-                'Accept': '*/*',
-                'Connection': 'keep-alive',
-                'Accept-Language': 'zh-cn',
-                'Referer': 'https://st.jingxi.com/my/redpacket.shtml?newPg=App&jxsid=16156262265849285961',
-                'Accept-Encoding': 'gzip, deflate, br',
-                "Cookie": cookie,
-                'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
-            }
-        }
-        $.get(options, (err, resp, data) => {
-            try {
-                if (err) {
-                    console.log(`${JSON.stringify(err)}`)
-                    console.log(`${$.name} API请求失败，请检查网路重试`)
-                } else {
-                    if (data) {
-                        data = JSON.parse(data).data
-                        $.jxRed = 0, $.jsRed = 0, $.jdRed = 0, $.jdhRed = 0, $.jxRedExpire = 0, $.jsRedExpire = 0, $.jdRedExpire = 0, $.jdhRedExpire = 0;
-                        let t = new Date()
-                        t.setDate(t.getDate() + 1)
-                        t.setHours(0, 0, 0, 0)
-                        t = parseInt((t - 1) / 1000)
-                        for (let vo of data.useRedInfo.redList || []) {
-                            if (vo.orgLimitStr && vo.orgLimitStr.includes("京喜")) {
-                                $.jxRed += parseFloat(vo.balance)
-                                if (vo['endTime'] === t) {
-                                    $.jxRedExpire += parseFloat(vo.balance)
-                                }
-                            } else if (vo.activityName.includes("极速版")) {
-                                $.jsRed += parseFloat(vo.balance)
-                                if (vo['endTime'] === t) {
-                                    $.jsRedExpire += parseFloat(vo.balance)
-                                }
-                            } else if (vo.orgLimitStr && vo.orgLimitStr.includes("京东健康")) {
-                                $.jdhRed += parseFloat(vo.balance)
-                                if (vo['endTime'] === t) {
-                                    $.jdhRedExpire += parseFloat(vo.balance)
-                                }
-                            } else {
-                                $.jdRed += parseFloat(vo.balance)
-                                if (vo['endTime'] === t) {
-                                    $.jdRedExpire += parseFloat(vo.balance)
-                                }
-                            }
-                        }
-
-                        $.jdRed = $.jdRed.toFixed(2)
-                        $.jxRed = $.jxRed.toFixed(2)
-                        $.jsRed = $.jsRed.toFixed(2)
-                        $.jdhRed = $.jdhRed.toFixed(2)
-                        $.balance = data.balance
-                        $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
-                        $.message += `🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元\n🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元\n*************`;
-                    } else {
-                        console.log(`京东服务器返回空数据`)
-                    }
-                }
-            } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve(data);
-            }
-        })
-    })
-}
-
-function getJdZZ() {
-    return new Promise(resolve => {
-        $.get(taskJDZZUrl("interactTaskIndex"), async (err, resp, data) => {
-            try {
-                if (err) {
-                    console.log(`${JSON.stringify(err)}`)
-                    console.log(`${$.name} API请求失败，请检查网路重试`)
-                } else {
-                    if (safeGet(data)) {
-                        data = JSON.parse(data);
-                        $.JdzzNum = data.data.totalNum
-                    }
-                }
-            } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve(data);
-            }
-        })
-    })
-}
 
 /*    if (typeof $.totalMoney !== "undefined") {
     ReturnMessage+= `💴签到现金：${$.totalMoney}元\n`;
@@ -227,18 +132,15 @@ function getJdZZ() {
     if(typeof $.JDtotalcash !== "undefined"){
     ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n*************\n`;
     }
-    if($.JdFarmProdName != ""){
-    if ($.jxFactoryInfo) {
-    ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
-    }
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
     ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天'}可兑换\n`;
-            } else {
+    } else {
     ReturnMessage+=`\n`;
-            }
-        } else {
+    }
+    } else {
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
+    }
     }
     const response = await await PetRequest('energyCollect');
     const initPetTownRes = await PetRequest('initPetTown');
@@ -249,6 +151,10 @@ function getJdZZ() {
     ReturnMessage += `🐹萌宠进度：(${response.result.medalPercent}%),已有勋章${response.result.medalNum}|${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
      //ReturnMessage += `已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
     }
+    }
+    if($.JdFarmProdName != ""){
+    if ($.jxFactoryInfo) {
+    ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
     }
     ReturnMessage+=``;
     ReturnMessage+=`${$.message}`;
@@ -436,6 +342,100 @@ function queryexpirejingdou() {
                 $.logErr(e, resp)
             } finally {
                 resolve();
+            }
+        })
+    })
+}
+
+function redPacket() {
+    return new Promise(async resolve => {
+        const options = {
+            "url": `https://m.jingxi.com/user/info/QueryUserRedEnvelopesV2?type=1&orgFlag=JD_PinGou_New&page=1&cashRedType=1&redBalanceFlag=1&channel=1&_=${+new Date()}&sceneval=2&g_login_type=1&g_ty=ls`,
+            "headers": {
+                'Host': 'm.jingxi.com',
+                'Accept': '*/*',
+                'Connection': 'keep-alive',
+                'Accept-Language': 'zh-cn',
+                'Referer': 'https://st.jingxi.com/my/redpacket.shtml?newPg=App&jxsid=16156262265849285961',
+                'Accept-Encoding': 'gzip, deflate, br',
+                "Cookie": cookie,
+                'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+            }
+        }
+        $.get(options, (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                } else {
+                    if (data) {
+                        data = JSON.parse(data).data
+                        $.jxRed = 0, $.jsRed = 0, $.jdRed = 0, $.jdhRed = 0, $.jxRedExpire = 0, $.jsRedExpire = 0, $.jdRedExpire = 0, $.jdhRedExpire = 0;
+                        let t = new Date()
+                        t.setDate(t.getDate() + 1)
+                        t.setHours(0, 0, 0, 0)
+                        t = parseInt((t - 1) / 1000)
+                        for (let vo of data.useRedInfo.redList || []) {
+                            if (vo.orgLimitStr && vo.orgLimitStr.includes("京喜")) {
+                                $.jxRed += parseFloat(vo.balance)
+                                if (vo['endTime'] === t) {
+                                    $.jxRedExpire += parseFloat(vo.balance)
+                                }
+                            } else if (vo.activityName.includes("极速版")) {
+                                $.jsRed += parseFloat(vo.balance)
+                                if (vo['endTime'] === t) {
+                                    $.jsRedExpire += parseFloat(vo.balance)
+                                }
+                            } else if (vo.orgLimitStr && vo.orgLimitStr.includes("京东健康")) {
+                                $.jdhRed += parseFloat(vo.balance)
+                                if (vo['endTime'] === t) {
+                                    $.jdhRedExpire += parseFloat(vo.balance)
+                                }
+                            } else {
+                                $.jdRed += parseFloat(vo.balance)
+                                if (vo['endTime'] === t) {
+                                    $.jdRedExpire += parseFloat(vo.balance)
+                                }
+                            }
+                        }
+
+                        $.jdRed = $.jdRed.toFixed(2)
+                        $.jxRed = $.jxRed.toFixed(2)
+                        $.jsRed = $.jsRed.toFixed(2)
+                        $.jdhRed = $.jdhRed.toFixed(2)
+                        $.balance = data.balance
+                        $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
+                        $.message += `*************\n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元\n🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元 `;
+                    } else {
+                        console.log(`京东服务器返回空数据`)
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve(data);
+            }
+        })
+    })
+}
+
+function getJdZZ() {
+    return new Promise(resolve => {
+        $.get(taskJDZZUrl("interactTaskIndex"), async (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                } else {
+                    if (safeGet(data)) {
+                        data = JSON.parse(data);
+                        $.JdzzNum = data.data.totalNum
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve(data);
             }
         })
     })
