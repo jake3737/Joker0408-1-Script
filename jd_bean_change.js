@@ -118,15 +118,15 @@ async function showMsg() {
 /*    if (typeof $.totalMoney !== "undefined") {
     ReturnMessage+= `💴签到现金：${$.totalMoney}元\n`;
     } 
-    if($.JdMsScore!=0){
-    ReturnMessage+=`💰京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
-    }
     if(typeof $.JDEggcnt !== "undefined"){
     ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }
     if ($.ddFactoryInfo) {
     ReturnMessage+= `🏭东东工厂：${$.ddFactoryInfo}\n`
     }*/
+    if($.JdMsScore!=0){
+    ReturnMessage+=`💰京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
+    }
     if(typeof $.JdzzNum !== "undefined"){
     ReturnMessage+=`💰京东赚赚：${$.JdzzNum}枚(${$.JdzzNum / 10000}元)\n`;
     }
