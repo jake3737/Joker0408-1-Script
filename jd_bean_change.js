@@ -132,14 +132,15 @@ async function showMsg() {
     if(typeof $.JDtotalcash !== "undefined"){
     ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n*************\n`;
     }
-    ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
+             ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
-    ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天'}可兑换\n`;
-    } else {
-    ReturnMessage+=`\n`;
-    } else {
-    ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
-    }
+                ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天'}可兑换\n`;
+            } else {
+                ReturnMessage+=`\n`;
+            }
+        } else {
+            ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
+        }
     }
     const response = await await PetRequest('energyCollect');
     const initPetTownRes = await PetRequest('initPetTown');
