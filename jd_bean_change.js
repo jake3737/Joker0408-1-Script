@@ -151,9 +151,9 @@ async function showMsg() {
     ReturnMessage += `🐹萌宠进度：(${response.result.medalPercent}%),已有勋章${response.result.medalNum}|${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
      //ReturnMessage += `已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
     }
-    }
     if ($.jxFactoryInfo) {
     ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
+    }
     }
     ReturnMessage+=``;
     ReturnMessage+=`${$.message}`;
