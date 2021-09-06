@@ -108,7 +108,7 @@ async function showMsg() {
     // }
 
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
-    ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n*************\n`;
+    ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
     ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
     ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
