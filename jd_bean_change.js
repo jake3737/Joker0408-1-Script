@@ -143,7 +143,7 @@ async function showMsg() {
         $.petInfo = initPetTownRes.result;
                 if (response.resultCode === '0') {
     ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
-    ReturnMessage += `🐹萌宠进度：(${response.result.medalPercent}%),已集勋章${response.result.medalNum}|${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
+    ReturnMessage += `🐹萌宠进度：(${response.result.medalPercent}%),已集勋章${response.result.medalNum} | ${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
      //ReturnMessage += `已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
     }
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
