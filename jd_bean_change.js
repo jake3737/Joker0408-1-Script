@@ -240,7 +240,6 @@ function getJdZZ() {
         } else {
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
     }
-    }
     const response = await await PetRequest('energyCollect');
     const initPetTownRes = await PetRequest('initPetTown');
     if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
