@@ -137,7 +137,6 @@ async function showMsg() {
     ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天'}可兑换\n`;
     } else {
     ReturnMessage+=`\n`;
-    }
     } else {
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
     }
