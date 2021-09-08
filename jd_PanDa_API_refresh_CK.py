@@ -1,5 +1,5 @@
 """
-new Env('PanDa青龙全自动更新cookie');
+new Env('PanDa&京东Wskey');
 """
 # cron:50 11,23 * * *
 
