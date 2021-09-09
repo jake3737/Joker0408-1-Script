@@ -762,7 +762,7 @@ function getJxFactory() {
                                     infoMsg = `${$.jxProductName}\n🏭工厂进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
-                                            infoMsg = `${$.productName}\n🏭工厂进度：已经完成生产，可兑换`;
+                                            infoMsg = `${$.productName}\n🏭工厂进度：已经完成生产,可兑换`;
                                         }
                                         if (production['exchangeStatus'] === 3) {
                                             if (new Date().getHours() === 9) {
