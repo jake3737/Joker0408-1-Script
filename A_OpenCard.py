@@ -187,7 +187,7 @@ pwd = os.path.dirname(os.path.abspath(__file__)) + os.sep
 
 ######
 ## 账号
-OpenCardUserList = ({5..9})
+OpenCardUserList = (5 6 7 8 9)
 ## 随机Cookie
 OpenCardRandomCK = false
 openCardBean = 10
