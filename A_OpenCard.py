@@ -185,7 +185,7 @@ today = datetime.datetime.now().strftime('%Y-%m-%d')
 # 获取当前工作目录
 pwd = os.path.dirname(os.path.abspath(__file__)) + os.sep
 
-openCardBean = 10
+openCardBean = 20
 sleepNum = 0.5
 record = True
 onlyRecord = False
