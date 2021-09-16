@@ -156,36 +156,6 @@ class getJDCookie(object):
         except Exception as e:
             print(f"【getCookie Error】{e}")
 
- 
-        # 检测cookie格式是否正确
-    def getUserInfo(self, ck, pinName, userNum):
-        url = 'https://me-api.jd.com/user_new/info/GetJDUserInfoUnion?orgFlag=JD_PinGou_New&callSource=mainorder&channel=4&isHomewhite=0&sceneval=2&sceneval=2&callback='
-        headers = {
-            'Cookie': ck,
-            'Accept': '*/*',
-            'Connection': 'close',
-            'Referer': 'https://home.m.jd.com/myJd/home.action',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Host': 'me-api.jd.com',
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1',
-            'Accept-Language': 'zh-cn'
-        }
-        try:
-            if sys.platform == 'ios':
-                resp = requests.get(url=url, verify=False, headers=headers, timeout=60).json()
-            else:
-                resp = requests.get(url=url, headers=headers, timeout=60).json()
-            if resp['retcode'] == "0":
-                nickname = resp['data']['userInfo']['baseInfo']['nickname']
-                return ck, nickname
-            else:
-                context = f"账号{userNum}【{pinName}】Cookie 已失效！请重新获取。"
-                print(context)
-                return ck, False
-        except Exception:
-            context = f"账号{userNum}【{pinName}】Cookie 已失效！请重新获取。"
-            print(context)
-            return ck, True
 
     def iscookie(self):
         """
