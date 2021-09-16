@@ -654,7 +654,7 @@ def iscookie():
                 pinName = unquote(pinName[0])
                 # 获取账号名
                 ck, nickname = getUserInfo(i, pinName, u)
-                if nickname != False:
+                if nickname != True:
                     cookiesList.append(ck)
                     userNameList.append(nickname)
                     pinNameList.append(pinName)
