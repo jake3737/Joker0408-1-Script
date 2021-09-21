@@ -5,7 +5,7 @@
 默认：每运行一次脚本全部已关注的店铺与商品
 建议此脚本运行时间在 种豆得豆和宠汪汪脚本运行之后 再执行
 现有功能: 1、取关商品。2、取关店铺。3、匹配到boxjs输入的过滤关键词后，不再进行此商品/店铺后面(包含输入的关键词商品/店铺)的取关
-0 22 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_unsubscribe.js
+0 9,18 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_unsubscribe.js
 */
 const $ = new Env('取关京东店铺和商品');
 //Node.js用户请在jdCookie.js处填写京东ck;
