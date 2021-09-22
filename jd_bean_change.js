@@ -219,7 +219,6 @@ async function showMsg() {
 	//ReturnMessage+=`🐶今日过期： ${$.expirejingdou}京豆\n`;
 	//}
 
-
 	ReturnMessage += `🐶昨日京豆：收${$.incomeBean}京豆`;
 
 	if ($.expenseBean != 0) {
@@ -266,6 +265,7 @@ async function showMsg() {
 		} else if (response.resultCode === '0') {
 			ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}`;
 			ReturnMessage += `\n🐹萌宠进度：(${(response.result.medalPercent).toFixed(0)}%, 已集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
+		}
 		}
 	if ($.JdFarmProdName != "") {
 		if ($.JdtreeEnergy != 0) {
