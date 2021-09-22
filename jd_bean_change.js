@@ -251,6 +251,23 @@ async function showMsg() {
 	if ($.jxFactoryReceive) {
 		allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n🏭京喜工厂：${$.jxFactoryReceive} `;
 	}
+
+    const response = await await PetRequest('energyCollect');
+	const initPetTownRes = await PetRequest('initPetTown');
+	if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
+		$.petInfo = initPetTownRes.result;
+		if ($.petInfo.userStatus === 0) {
+			ReturnMessage += `🐹东东萌宠：活动未开启!\n`;
+		} else if ($.petInfo.petStatus === 5) {
+			ReturnMessage += `🐹东东萌宠： ${$.petInfo.goodsInfo.goodsName}\n🐹萌宠进度：已可领取!\n`;
+			allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 🐹东东萌宠：可以兑换了! `;
+		} else if ($.petInfo.petStatus === 6) {
+			allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 🐹东东萌宠：未重新领养! `;
+		} else if (response.resultCode === '0') {
+			ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}`;
+			ReturnMessage += `\n🐹萌宠进度：(${(response.result.medalPercent).toFixed(0)}%, 已集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
+		}
+
 	if ($.JdFarmProdName != "") {
 		if ($.JdtreeEnergy != 0) {
 			if ($.treeState === 2 || $.treeState === 3) {
@@ -273,21 +290,6 @@ async function showMsg() {
 			}
 		}
 	}
-	const response = await await PetRequest('energyCollect');
-	const initPetTownRes = await PetRequest('initPetTown');
-	if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
-		$.petInfo = initPetTownRes.result;
-		if ($.petInfo.userStatus === 0) {
-			ReturnMessage += `🐹东东萌宠：活动未开启!\n`;
-		} else if ($.petInfo.petStatus === 5) {
-			ReturnMessage += `🐹东东萌宠： ${$.petInfo.goodsInfo.goodsName}\n🐹萌宠进度：已可领取!\n`;
-			allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 🐹东东萌宠：可以兑换了! `;
-		} else if ($.petInfo.petStatus === 6) {
-			allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 🐹东东萌宠：未重新领养! `;
-		} else if (response.resultCode === '0') {
-			ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}`;
-			ReturnMessage += `\n🐹萌宠进度：(${(response.result.medalPercent).toFixed(0)}%, 已集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
-		}
 	}
 	ReturnMessage += `————————————\n`;
 	ReturnMessage += `${$.message}`;
