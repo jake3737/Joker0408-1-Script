@@ -1,10 +1,11 @@
 /*
-cron "30 10,22 * * *" jd_bean_change.js, tag:资产变化强化版by-ccwav
+Modified time: 2021-09-25 15:25:41
+统计昨日京豆的变化情况，包括收入，支出，以及显示当前京豆数量,统计红包以及过期红包，东东萌宠、东东农场、京喜牧场等进度
+网页查看京豆地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
+cron : 0 9,19 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_bean_change.js
  */
 
-//更新by ccwav,20210919
-
-const $ = new Env('京东资产变动');
+const $ = new Env('京东资产通知');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent = $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``) : ``;
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -125,13 +126,13 @@ if ($.isNode()) {
 	}
 
 	if (allReceiveMessage) {
-		allMessage2 = `【⏰商品白嫖活动领取提醒⏰】\n` + allReceiveMessage;
+		allMessage2 = `` + allReceiveMessage;
 	}
 	if (allWarnMessage) {
 		if (allMessage2) {
 			allMessage2 = `\n` + allMessage2;
 		}
-		allMessage2 = `【⏰商品白嫖活动任务提醒⏰】\n` + allWarnMessage + allMessage2;
+		allMessage2 = `` + allWarnMessage + allMessage2;
 	}
 
 	if (intPerSent > 0) {
@@ -168,11 +169,10 @@ async function showMsg() {
 	//if ($.errorMsg)
 	//return
 
-	//ReturnMessage = `👇=======账号${$.index}=======👇\n`
-	ReturnMessage = `【账号${$.index}🆔】${$.nickName || $.UserName}\n`;
+	ReturnMessage = `=====[京东账号${$.index}]=====\n\n🐵账号昵称：${$.nickName || $.UserName}\n`
 	
 	if ($.levelName || $.JingXiang)
-		ReturnMessage += `【账号信息】`;
+		ReturnMessage += `🐵账号信息：`;
 	
 	if ($.levelName) {
 		if ($.levelName.length > 2)
@@ -196,7 +196,7 @@ async function showMsg() {
 		if ($.isPlusVip == 1)
 			ReturnMessage += `${$.levelName}Plus,`;
 		else
-			ReturnMessage += `${$.levelName}会员,`;
+			ReturnMessage += `/*${$.levelName}会员,*/`;
 	}
 
 	if($.JingXiang)
@@ -205,72 +205,44 @@ async function showMsg() {
 	if ($.errorMsg)
 		ReturnMessage += `\n【数据报错】获取京豆数据异常!`;
 
-	ReturnMessage += `\n【今日京豆】收${$.todayIncomeBean}豆`;
+	ReturnMessage += `\n 🐶今日京豆：收${$.todayIncomeBean}京豆`;
 
 	if ($.todayOutcomeBean != 0) {
-		ReturnMessage += `,支${$.todayOutcomeBean}豆`;
+		ReturnMessage += `|支${$.todayOutcomeBean}豆`;
 	}
 	ReturnMessage += `\n`;
 
 	//if($.expirejingdou!=0){
-	//ReturnMessage+=`【今日过期】${$.expirejingdou}京豆\n`;
+	//ReturnMessage+=`🐶今日过期： ${$.expirejingdou}京豆\n`;
 	//}
 
-
-	ReturnMessage += `【昨日京豆】收${$.incomeBean}豆`;
+	ReturnMessage += `🐶昨日京豆：收${$.incomeBean}京豆`;
 
 	if ($.expenseBean != 0) {
-		ReturnMessage += `,支${$.expenseBean}豆`;
+		ReturnMessage += `,支${$.expenseBean}京豆`;
 	}
 	ReturnMessage += `\n`;
-	ReturnMessage += `【当前京豆】${$.beanCount}豆(≈${($.beanCount / 100).toFixed(2)}元)\n`;
-
-	if (typeof $.JDEggcnt !== "undefined") {
-		if ($.JDEggcnt == 0) {
-			ReturnMessage += `【京喜牧场】未开通或提示火爆.\n`;
-		} else {
-			ReturnMessage += `【京喜牧场】${$.JDEggcnt}枚鸡蛋\n`;
-		}
-
-	}
-	if (typeof $.JDtotalcash !== "undefined") {
-		ReturnMessage += `【极速金币】${$.JDtotalcash}币(≈${($.JDtotalcash / 10000).toFixed(2)}元)\n`;
-	}
-	if (typeof $.JdzzNum !== "undefined") {
-		ReturnMessage += `【京东赚赚】${$.JdzzNum}币(≈${($.JdzzNum / 10000).toFixed(2)}元)\n`;
-	}
-	if ($.JdMsScore != 0) {
-		ReturnMessage += `【京东秒杀】${$.JdMsScore}币(≈${($.JdMsScore / 1000).toFixed(2)}元)\n`;
+	ReturnMessage += `🐶总计京豆：${$.beanCount}京豆\n————————————\n`;
 	}
 	if ($.jdCash != 0) {
-		ReturnMessage += `【 签到现金 】${$.jdCash}元\n`;
+		ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
 	}
-
-	if ($.JdFarmProdName != "") {
-		if ($.JdtreeEnergy != 0) {
-			if ($.treeState === 2 || $.treeState === 3) {
-				ReturnMessage += `【东东农场】${$.JdFarmProdName} 可以兑换了!\n`;
-				allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.JdFarmProdName} (东东农场)\n`;
-			} else {
-				if ($.JdwaterD != 'Infinity' && $.JdwaterD != '-Infinity') {
-					ReturnMessage += `【东东农场】${$.JdFarmProdName}(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%,${$.JdwaterD}天)\n`;
-				} else {
-					ReturnMessage += `【东东农场】${$.JdFarmProdName}(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%)\n`;
-
-				}
-			}
+	if ($.JdMsScore != 0) {
+		ReturnMessage += `💰京东秒杀：${$.JdMsScore}币(${($.JdMsScore / 1000).toFixed(2)}元)\n`;
+	}
+	if (typeof $.JdzzNum !== "undefined") {
+		ReturnMessage += `💰京东赚赚：${$.JdzzNum}币(${($.JdzzNum / 10000).toFixed(2)}元)\n`;
+	}
+	if (typeof $.JDtotalcash !== "undefined") {
+		ReturnMessage += `💰极速金币：${$.JDtotalcash}币(${($.JDtotalcash / 10000).toFixed(2)}元)\n————————————\n`;
+	}
+	if (typeof $.JDEggcnt !== "undefined") {
+		if ($.JDEggcnt == 0) {
+			ReturnMessage += ``;
 		} else {
-			if ($.treeState === 0) {
-				allWarnMessage += `【账号${$.index} ${$.nickName || $.UserName}】水果领取后未重新种植! (东东农场)\n`;
-				//ReturnMessage += `【东东农场】水果领取后未重新种植!\n`;
-			} else if ($.treeState === 1) {
-				ReturnMessage += `【东东农场】${$.JdFarmProdName}种植中...\n`;
-			} else {
-				allWarnMessage += `【账号${$.index} ${$.nickName || $.UserName}】状态异常! (东东农场)\n`;
-				//ReturnMessage += `【东东农场】${$.JdFarmProdName}状态异常${$.treeState}...\n`;
-			}
+			ReturnMessage += `🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
 		}
-	}
+	
 	if ($.jxFactoryInfo) {
 		ReturnMessage += `【京喜工厂】${$.jxFactoryInfo}\n`
 	}
@@ -283,24 +255,29 @@ async function showMsg() {
 	if ($.jxFactoryReceive) {
 		allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.jxFactoryReceive} (京喜工厂)\n`;
 	}
-	const response = await await PetRequest('energyCollect');
-	const initPetTownRes = await PetRequest('initPetTown');
-	if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
-		$.petInfo = initPetTownRes.result;
-		if ($.petInfo.userStatus === 0) {
-			ReturnMessage += `【东东萌宠】活动未开启!\n`;
-		} else if ($.petInfo.petStatus === 5) {
-			ReturnMessage += `【东东萌宠】${$.petInfo.goodsInfo.goodsName}已可领取!\n`;
-			allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.petInfo.goodsInfo.goodsName}可以兑换了! (东东萌宠)\n`;
-		} else if ($.petInfo.petStatus === 6) {
-			//ReturnMessage += `【东东萌宠】未选择物品!\n`;
-			allWarnMessage += `【账号${$.index} ${$.nickName || $.UserName}】未选择物品! (东东萌宠)\n`;
-		} else if (response.resultCode === '0') {
-			ReturnMessage += `【东东萌宠】${$.petInfo.goodsInfo.goodsName}`;
-			ReturnMessage += `(${(response.result.medalPercent).toFixed(0)}%,${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块)\n`;
-		}
-	}
-	ReturnMessage += `🧧🧧🧧红包明细🧧🧧🧧\n`;
+if ($.JdFarmProdName != "") {
+		if ($.JdtreeEnergy != 0) {
+			if ($.treeState === 2 || $.treeState === 3) {
+				ReturnMessage += `👨‍🌾东东农场：可以兑换了!\n`;
+				allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 👨‍🌾东东农场： ${$.JdFarmProdName}`;
+			} else {
+				if ($.JdwaterD != 'Infinity' && $.JdwaterD != '-Infinity') {
+					ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%,${$.JdwaterD}天后可兑换\n`;
+				} else {
+					ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%)\n`;
+				}
+			}
+		} else {
+			if ($.treeState === 0) {
+				allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n👨‍🌾东东农场：未重新种植!`;
+			} else if ($.treeState === 1) {
+				ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}种植中...\n`;
+			} else {
+				allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n👨‍🌾东东农场：状态异常! `;
+			}
+		} 
+}
+	ReturnMessage += `————————————\n`;
 	ReturnMessage += `${$.message}`;
 	allMessage += ReturnMessage+`\n`;
 	console.log(`${ReturnMessage}`);
@@ -680,9 +657,9 @@ function redPacket() {
 				} else {
 					if (data) {
 						data = JSON.parse(data).data
-							$.jxRed = 0,
+					        $.jdRed = 0,
+						$.jxRed = 0,
 						$.jsRed = 0,
-						$.jdRed = 0,
 						$.jdhRed = 0,
 						$.jxRedExpire = 0,
 						$.jsRedExpire = 0,
@@ -715,21 +692,21 @@ function redPacket() {
 									}
 								}
 							}
+							$.jdRed = $.jdRed.toFixed(2)
 							$.jxRed = $.jxRed.toFixed(2)
 							$.jsRed = $.jsRed.toFixed(2)
-							$.jdRed = $.jdRed.toFixed(2)
 							$.jdhRed = $.jdhRed.toFixed(2)
 							$.balance = data.balance
 							$.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
-							$.message += `【红包总额】${$.balance}(总过期${$.expiredBalance})元 \n`;
+							$.message += `🧧京东红包：${$.jdRed}(将过期${$.jdRedExpire.toFixed(2)})元\n`;
 						if ($.jxRed > 0)
-							$.message += `【京喜红包】${$.jxRed}(将过期${$.jxRedExpire.toFixed(2)})元 \n`;
+							$.message += `🧧京喜红包：${$.jxRed}(将过期${$.jxRedExpire.toFixed(2)})元 \n`;
 						if ($.jsRed > 0)
-							$.message += `【极速红包】${$.jsRed}(将过期${$.jsRedExpire.toFixed(2)})元 \n`;
+							$.message += `🧧极速红包：${$.jsRed}(将过期${$.jsRedExpire.toFixed(2)})元 \n`;
 						if ($.jdRed > 0)
-							$.message += `【京东红包】${$.jdRed}(将过期${$.jdRedExpire.toFixed(2)})元 \n`;
+							$.message += `🧧健康红包：${$.jdhRed}(将过期${$.jdhRedExpire.toFixed(2)})元\n`;
 						if ($.jdhRed > 0)
-							$.message += `【健康红包】${$.jdhRed}(将过期${$.jdhRedExpire.toFixed(2)})元 `;
+							$.message += `🧧总计红包：${$.balance}(将过期${$.expiredBalance})元`;
 					} else {
 						console.log(`京东服务器返回空数据`)
 					}
@@ -1097,27 +1074,27 @@ function getJxFactory() {
 								$.commodityDimId = production.commodityDimId;
 								// subTitle = data.user.pin;
 								await GetCommodityDetails(); //获取已选购的商品信息
-								infoMsg = `${$.jxProductName}(${((production.investedElectric / production.needElectric) * 100).toFixed(0)}%`;
+								infoMsg = `${$.jxProductName} \n🏭工厂进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(0)}%`;
 								if (production.investedElectric >= production.needElectric) {
 									if (production['exchangeStatus'] === 1) {
-										infoMsg = `${$.jxProductName}已可兑换`;
+										infoMsg = `${$.jxProductName} \n🏭工厂进度：生产已完成,可兑换`;
 										$.jxFactoryReceive = `${$.jxProductName}`;
 									}
 									if (production['exchangeStatus'] === 3) {
 										if (new Date().getHours() === 9) {
-											infoMsg = `兑换超时，请重选商品!`;
+											infoMsg = `兑换超时,请重选商品!`;
 										}
 									}
 									// await exchangeProNotify()
 								} else {
-									strTemp = `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(0)}天)`;
+									strTemp = `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(0)}天可兑换)`;
 									if (strTemp == ",0天)")
 										infoMsg += ",今天)";
 									else
 										infoMsg += strTemp;
 								}
 								if (production.status === 3) {
-									infoMsg = "商品已失效，请重选商品!";
+									infoMsg = "已失效,请重选商品!";
 								}
 							} else {
 								$.unActive = false; //标记是否开启了京喜活动或者选购了商品进行生产
