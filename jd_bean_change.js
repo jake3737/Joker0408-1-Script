@@ -247,12 +247,17 @@ async function showMsg() {
 		}
 	
 	if ($.jxFactoryInfo) {
-		ReturnMessage += `🏭京喜工厂：${$.jxFactoryInfo}\n`
+		ReturnMessage += `【京喜工厂】${$.jxFactoryInfo}\n`
+	}
+	if ($.ddFactoryInfo) {
+		ReturnMessage += `【东东工厂】${$.ddFactoryInfo}\n`
+	}
+	if ($.DdFactoryReceive) {
+		allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.DdFactoryReceive} (东东工厂)\n`;
 	}
 	if ($.jxFactoryReceive) {
-		allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n🏭京喜工厂：${$.jxFactoryReceive} `;
+		allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.jxFactoryReceive} (京喜工厂)\n`;
 	}
-
 const response = await await PetRequest('energyCollect');
 	const initPetTownRes = await PetRequest('initPetTown');
 	if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
