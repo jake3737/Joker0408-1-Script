@@ -1,5 +1,5 @@
 /*
-Modified time: 2021-08-25 15:25:41
+Modified time: 2021-09-25 15:25:41
 统计昨日京豆的变化情况，包括收入，支出，以及显示当前京豆数量,统计红包以及过期红包，东东萌宠、东东农场、京喜牧场等进度
 网页查看京豆地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
 cron : 0 9,19 * * * https://raw.githubusercontent.com/Joker0408-1/Script/JD/jd_bean_change.js
@@ -114,7 +114,7 @@ async function showMsg() {
     ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
-    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n*************\n`;
+    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n——|——|——\n`;
     if ($.jdCash != 0) {
     ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
     }
@@ -125,7 +125,7 @@ async function showMsg() {
     ReturnMessage+=`💰京东赚赚：${$.JdzzNum}枚(${$.JdzzNum / 10000}元)\n`;
     }
     if(typeof $.JDtotalcash !== "undefined"){
-    ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n*************\n`;
+    ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|——|——\n`;
     }
     if(typeof $.JDEggcnt !== "undefined"){
     ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
@@ -502,7 +502,7 @@ function redPacket() {
                         $.jdhRed = $.jdhRed.toFixed(2)
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
-                        $.message += `*************\n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元\n🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元 `;
+                        $.message += `——|——|——\n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元\n🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元 `;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
