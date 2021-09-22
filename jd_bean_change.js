@@ -115,16 +115,12 @@ async function showMsg() {
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n*************\n`;
-
-/* if(typeof $.JDEggcnt !== "undefined"){
+    if(typeof $.JDEggcnt !== "undefined"){
     ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }
-    if ($.ddFactoryInfo) {
-    ReturnMessage+= `🏭东东工厂：${$.ddFactoryInfo}\n`
-    }*/
-if ($.jdCash != 0) {
-		ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
-	}
+    if ($.jdCash != 0) {
+    ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
+    }
     if($.JdMsScore!=0){
     ReturnMessage+=`💰京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
     }
