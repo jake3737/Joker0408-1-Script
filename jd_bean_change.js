@@ -115,9 +115,6 @@ async function showMsg() {
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n*************\n`;
-    if(typeof $.JDEggcnt !== "undefined"){
-    ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
-    }
     if ($.jdCash != 0) {
     ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
     }
@@ -130,6 +127,9 @@ async function showMsg() {
     if(typeof $.JDtotalcash !== "undefined"){
     ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n*************\n`;
     }
+    if(typeof $.JDEggcnt !== "undefined"){
+    ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
+    }
     if($.JdFarmProdName != ""){
     if ($.jxFactoryInfo) {
     ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
@@ -138,10 +138,9 @@ async function showMsg() {
     const initPetTownRes = await PetRequest('initPetTown');
     if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
         $.petInfo = initPetTownRes.result;
-                if (response.resultCode === '0') {
+    if (response.resultCode === '0') {
     ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
     ReturnMessage += `🐹萌宠进度：(${(response.result.medalPercent).toFixed(2)}%),勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
-     //ReturnMessage += `已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
     }
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
