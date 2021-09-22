@@ -113,7 +113,7 @@ async function showMsg() {
     ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
-    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n————————————\n`;
+    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n—————————\n`;
 
 /*    if (typeof $.totalMoney !== "undefined") {
     ReturnMessage+= `💴签到现金：${$.totalMoney}元\n`;
@@ -131,7 +131,7 @@ async function showMsg() {
     ReturnMessage+=`💰京东赚赚：${$.JdzzNum}枚(${$.JdzzNum / 10000}元)\n`;
     }
     if(typeof $.JDtotalcash !== "undefined"){
-    ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n————————————\n`;
+    ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n—————————\n`;
     }
     if($.JdFarmProdName != ""){
     if ($.jxFactoryInfo) {
@@ -143,7 +143,7 @@ async function showMsg() {
         $.petInfo = initPetTownRes.result;
                 if (response.resultCode === '0') {
     ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
-    ReturnMessage += `🐹萌宠进度：(${(response.result.medalPercent).toFixed(2)}%),已集勋章${response.result.medalNum}|${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
+    ReturnMessage += `🐹萌宠进度：(${(response.result.medalPercent).toFixed(2)}%),集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
      //ReturnMessage += `已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
     }
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
@@ -405,7 +405,7 @@ function redPacket() {
                         $.jdhRed = $.jdhRed.toFixed(2)
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
-                        $.message += `————————————\n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元\n🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元 `;
+                        $.message += `—————————\n🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元\n🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元 `;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
