@@ -258,14 +258,6 @@ async function showMsg() {
 	if ($.jxFactoryReceive) {
 		allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.jxFactoryReceive} (京喜工厂)\n`;
 	}
-    const response = await await PetRequest('energyCollect');
-    const initPetTownRes = await PetRequest('initPetTown');
-    if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
-        $.petInfo = initPetTownRes.result;
-                if (response.resultCode === '0') {
-    ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
-    ReturnMessage += `🐹萌宠进度：(${response.result.medalPercent}%),已集勋章${response.result.medalNum}|${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
-	}
 if ($.JdFarmProdName != "") {
 		if ($.JdtreeEnergy != 0) {
 			if ($.treeState === 2 || $.treeState === 3) {
