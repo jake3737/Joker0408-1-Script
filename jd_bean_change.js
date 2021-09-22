@@ -695,9 +695,9 @@ function redPacket() {
 									}
 								}
 							}
-							$.jdRed = $.jxRed.toFixed(2)
-							$.jxRed = $.jsRed.toFixed(2)
-							$.jsRed = $.jdRed.toFixed(2)
+							$.jdRed = $.jdRed.toFixed(2)
+							$.jxRed = $.jxRed.toFixed(2)
+							$.jsRed = $.jsRed.toFixed(2)
 							$.jdhRed = $.jdhRed.toFixed(2)
 							$.balance = data.balance
 							$.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
