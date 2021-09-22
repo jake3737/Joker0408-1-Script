@@ -258,22 +258,13 @@ async function showMsg() {
 	if ($.jxFactoryReceive) {
 		allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.jxFactoryReceive} (京喜工厂)\n`;
 	}
-const response = await await PetRequest('energyCollect');
-	const initPetTownRes = await PetRequest('initPetTown');
-	if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
-		$.petInfo = initPetTownRes.result;
-		if ($.petInfo.userStatus === 0) {
-			ReturnMessage += `【东东萌宠】活动未开启!\n`;
-		} else if ($.petInfo.petStatus === 5) {
-			ReturnMessage += `【东东萌宠】${$.petInfo.goodsInfo.goodsName}已可领取!\n`;
-			allReceiveMessage += `【账号${$.index} ${$.nickName || $.UserName}】${$.petInfo.goodsInfo.goodsName}可以兑换了! (东东萌宠)\n`;
-		} else if ($.petInfo.petStatus === 6) {
-			//ReturnMessage += `【东东萌宠】未选择物品!\n`;
-			allWarnMessage += `【账号${$.index} ${$.nickName || $.UserName}】未选择物品! (东东萌宠)\n`;
-		} else if (response.resultCode === '0') {
-			ReturnMessage += `【东东萌宠】${$.petInfo.goodsInfo.goodsName}`;
-			ReturnMessage += `(${(response.result.medalPercent).toFixed(0)}%,${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块)\n`;
-		}
+    const response = await await PetRequest('energyCollect');
+    const initPetTownRes = await PetRequest('initPetTown');
+    if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
+        $.petInfo = initPetTownRes.result;
+                if (response.resultCode === '0') {
+    ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
+    ReturnMessage += `🐹萌宠进度：(${response.result.medalPercent}%),已集勋章${response.result.medalNum}|${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
 	}
 if ($.JdFarmProdName != "") {
 		if ($.JdtreeEnergy != 0) {
