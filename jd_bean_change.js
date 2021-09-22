@@ -766,7 +766,7 @@ function getJxFactory() {
                                         }
                                         if (production['exchangeStatus'] === 3) {
                                             if (new Date().getHours() === 9) {
-                                                infoMsg = `活动未开启`;
+                                                infoMsg = ``;
                                             }
                                         }
                                         // await exchangeProNotify()
@@ -779,10 +779,9 @@ function getJxFactory() {
                                 } else {
                                     $.unActive = false;//标记是否开启了京喜活动或者选购了商品进行生产
                                     if (!data.factoryList) {
-                                        infoMsg = "活动未开启"
-                                        // $.msg($.name, '【提示】', `京东账号${$.index}[${$.nickName}]京喜工厂未开启\n请手动开启活动`);
+                                        infoMsg = ""
                                     } else if (data.factoryList && !data.productionList) {
-                                        infoMsg = "活动未开启"
+                                        infoMsg = ""
                                     }
                                 }
                             }
