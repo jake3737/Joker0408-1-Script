@@ -139,7 +139,7 @@ async function showMsg() {
             } else {
     ReturnMessage+=`\n`;
             }
-        } else {
+        } elif {
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
     }
     const response = await await PetRequest('energyCollect');
