@@ -245,28 +245,7 @@ async function showMsg() {
 		} else {
 			ReturnMessage += `🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
 		}
-	if ($.JdFarmProdName != "") {
-		if ($.JdtreeEnergy != 0) {
-			if ($.treeState === 2 || $.treeState === 3) {
-				ReturnMessage += `👨‍🌾东东农场：可以兑换了!\n`;
-				allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 👨‍🌾东东农场： ${$.JdFarmProdName}`;
-			} else {
-				if ($.JdwaterD != 'Infinity' && $.JdwaterD != '-Infinity') {
-					ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%,${$.JdwaterD}天后可兑换\n`;
-				} else {
-					ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%)\n`;
-				}
-			}
-		} else {
-			if ($.treeState === 0) {
-				allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n👨‍🌾东东农场：未重新种植!`;
-			} else if ($.treeState === 1) {
-				ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}种植中...\n`;
-			} else {
-				allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n👨‍🌾东东农场：状态异常! `;
-			}
-		}
-	}
+	
 	if ($.jxFactoryInfo) {
 		ReturnMessage += `🏭京喜工厂：${$.jxFactoryInfo}\n`
 	}
@@ -289,6 +268,27 @@ async function showMsg() {
 			ReturnMessage += `\n🐹萌宠进度：(${(response.result.medalPercent).toFixed(0)}%, 已集勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
 		}
 	}
+if ($.JdFarmProdName != "") {
+		if ($.JdtreeEnergy != 0) {
+			if ($.treeState === 2 || $.treeState === 3) {
+				ReturnMessage += `👨‍🌾东东农场：可以兑换了!\n`;
+				allReceiveMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n 👨‍🌾东东农场： ${$.JdFarmProdName}`;
+			} else {
+				if ($.JdwaterD != 'Infinity' && $.JdwaterD != '-Infinity') {
+					ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%,${$.JdwaterD}天后可兑换\n`;
+				} else {
+					ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(0)}%)\n`;
+				}
+			}
+		} else {
+			if ($.treeState === 0) {
+				allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n👨‍🌾东东农场：未重新种植!`;
+			} else if ($.treeState === 1) {
+				ReturnMessage += `👨‍🌾东东农场：${$.JdFarmProdName}种植中...\n`;
+			} else {
+				allWarnMessage += `=====[京东账号${$.index}]=====\n🐵账号昵称：${$.nickName || $.UserName}\n👨‍🌾东东农场：状态异常! `;
+			}
+		}
 	ReturnMessage += `————————————\n`;
 	ReturnMessage += `${$.message}`;
 	allMessage += ReturnMessage+`\n`;
