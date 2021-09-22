@@ -774,7 +774,7 @@ function getJxFactory() {
                                         infoMsg += `,${((production.needElectric - production.investedElectric) / (2 * 60 * 60 * 24)).toFixed(2)}天可兑换`
                                     }
                                     if (production.status === 3) {
-                                        infoMsg = "${$.productName} \n🏭工厂进度：生产已经超时失效"
+                                        infoMsg = ""
                                     }
                                 } else {
                                     $.unActive = false;//标记是否开启了京喜活动或者选购了商品进行生产
