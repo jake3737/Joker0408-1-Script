@@ -142,7 +142,6 @@ async function showMsg() {
         } else {
     ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
     }
-    }
     const response = await await PetRequest('energyCollect');
     const initPetTownRes = await PetRequest('initPetTown');
     if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
@@ -155,7 +154,6 @@ async function showMsg() {
     if($.JdFarmProdName != ""){
     if ($.jxFactoryInfo) {
     ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
-    }
     }
     ReturnMessage+=``;
     ReturnMessage+=`${$.message}`;
