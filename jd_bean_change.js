@@ -49,7 +49,7 @@ if ($.isNode()) {
             $.expiredBalance = 0;
             $.JdzzNum=0;
             $.JdMsScore = 0;
-//            $.totalMoney = 0;
+            $.jdCash = 0;
             $.JdFarmProdName = '';
             $.JdtreeEnergy=0;
             $.JdtreeTotalEnergy=0;
@@ -79,6 +79,7 @@ if ($.isNode()) {
             await bean();
             await getJxFactory();   
             await getDdFactoryInfo(); 
+	    await jdCash();
             await showMsg();
         }
         if ($.isNode() && notifyTip && allMessage) {
@@ -115,15 +116,15 @@ async function showMsg() {
     ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n*************\n`;
 
-/*    if (typeof $.totalMoney !== "undefined") {
-    ReturnMessage+= `💴签到现金：${$.totalMoney}元\n`;
-    } 
-    if(typeof $.JDEggcnt !== "undefined"){
+/* if(typeof $.JDEggcnt !== "undefined"){
     ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }
     if ($.ddFactoryInfo) {
     ReturnMessage+= `🏭东东工厂：${$.ddFactoryInfo}\n`
     }*/
+if (typeof $.totalMoney !== "undefined") {
+    ReturnMessage+= `💴签到现金：${$.jdCash}元\n`;
+    } 
     if($.JdMsScore!=0){
     ReturnMessage+=`💰京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
     }
@@ -222,6 +223,29 @@ async function bean() {
     // console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
     // console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
 }
+async function jdCash() {
+	let functionId = "cash_homePage"
+		let body = "%7B%7D"
+		let uuid = randomString(16)
+		console.log(`正在获取领现金任务签名...`);
+	let sign = await getSign(functionId, decodeURIComponent(body), uuid)
+		if (!sign) {
+			console.log(`领现金任务签名获取失败,等待10秒后再次尝试...`)
+			await $.wait(10 * 1000);
+			sign = await getSign(functionId, decodeURIComponent(body), uuid);
+		}
+		if (!sign) {
+			console.log(`领现金任务签名获取失败,等待10秒后再次尝试...`)
+			await $.wait(10 * 1000);
+			sign = await getSign(functionId, decodeURIComponent(body), uuid);
+		}
+		if (sign) {
+			console.log(`领现金任务签名获取成功...`)
+		} else {
+			console.log(`领现金任务签名获取失败...`)
+			$.jdCash = 0;
+			return
+		}
 function TotalBean() {
     return new Promise(async resolve => {
         const options = {
