@@ -41,6 +41,7 @@ if ($.isNode()) {
             $.incomeBean = 0;
             $.expenseBean = 0;
             $.todayIncomeBean = 0;
+            $.todayOutcomeBean = 0;
             $.errorMsg = '';
             $.isLogin = true;
             $.nickName = '';
@@ -111,9 +112,16 @@ async function showMsg() {
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
     ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
-    ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆 \n`;
+    if($.expirejingdou!=0){
+    ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆\n`;
+	}
+    if($.todayOutcomeBean!=0){
+    ReturnMessage+=`🐶今日支出：${$.todayOutcomeBean}京豆\n`;
+	}
     ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
-    ReturnMessage+=`🐶昨日支出：${$.expenseBean}京豆 \n`;
+    if($.expenseBean!=0){
+    ReturnMessage+=`🐶昨天支出：${$.expenseBean}京豆\n`;
+	}
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n——|——|——\n`;
     if ($.jdCash != 0) {
     ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
@@ -212,15 +220,21 @@ async function bean() {
             $.expenseBean += Number(item.amount);
         }
     }
-    for (let item of todayArr) {
-        if (Number(item.amount) > 0) {
-            $.todayIncomeBean += Number(item.amount);
-        }
-    }
-    await queryexpirejingdou();//过期京豆
-    await redPacket();//过期红包
-    // console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
-    // console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
+
+	for (let item of todayArr) {
+		if (Number(item.amount) > 0) {
+			$.todayIncomeBean += Number(item.amount);
+		} else if (Number(item.amount) < 0) {
+			$.todayOutcomeBean += Number(item.amount);
+		}
+	}
+	$.todayOutcomeBean = -$.todayOutcomeBean;
+	$.expenseBean = -$.expenseBean;
+	//await queryexpirejingdou();//过期京豆
+	//$.todayOutcomeBean=$.todayOutcomeBean+$.expirejingdou;
+	await redPacket(); //过期红包
+	// console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
+	// console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
 }
 
 async function jdCash() {
