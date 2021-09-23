@@ -127,9 +127,13 @@ async function showMsg() {
     if(typeof $.JDtotalcash !== "undefined"){
     ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|——|——\n`;
     }
-    if(typeof $.JDEggcnt !== "undefined"){
-    ReturnMessage+=`🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
-    }
+    if (typeof $.JDEggcnt !== "undefined") {
+		if ($.JDEggcnt == 0) {
+			ReturnMessage += ``;
+		} else {
+			ReturnMessage += `🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
+		}
+	}
     if($.JdFarmProdName != ""){
     if ($.jxFactoryInfo) {
     ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
