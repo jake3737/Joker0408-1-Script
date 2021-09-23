@@ -507,14 +507,14 @@ function redPacket() {
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
     if ($.jdRed > 0)
-    $.message += `【🧧京东红包】${$.jdRed}(将过期${$.jdRedExpire.toFixed(2)})元 \n`;
+    $.message += `🧧京东红包：${$.jdRed}(将过期${$.jdRedExpire.toFixed(2)})元 \n`;
     if ($.jxRed > 0)
-    $.message += `【🧧京喜红包】${$.jxRed}(将过期${$.jxRedExpire.toFixed(2)})元 \n`;
+    $.message += `🧧京喜红包：${$.jxRed}(将过期${$.jxRedExpire.toFixed(2)})元 \n`;
     if ($.jsRed > 0)
-    $.message += `【🧧极速红包】${$.jsRed}(将过期${$.jsRedExpire.toFixed(2)})元 \n`;
+    $.message += `🧧极速红包：${$.jsRed}(将过期${$.jsRedExpire.toFixed(2)})元 \n`;
     if ($.jdhRed > 0)
-    $.message += `【🧧健康红包】${$.jdhRed}(将过期${$.jdhRedExpire.toFixed(2)})元 `;
-    $.message += `【🧧总计红包】${$.balance}(总过期${$.expiredBalance})元 \n`;
+    $.message += `🧧健康红包：${$.jdhRed}(将过期${$.jdhRedExpire.toFixed(2)})元 `;
+    $.message += `🧧总计红包：${$.balance}(总过期${$.expiredBalance})元 \n`;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
