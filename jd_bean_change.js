@@ -230,8 +230,8 @@ async function bean() {
 	}
 	$.todayOutcomeBean = -$.todayOutcomeBean;
 	$.expenseBean = -$.expenseBean;
-	//await queryexpirejingdou();//过期京豆
-	//$.todayOutcomeBean=$.todayOutcomeBean+$.expirejingdou;
+	await queryexpirejingdou();//过期京豆
+	$.todayOutcomeBean=$.todayOutcomeBean+$.expirejingdou;
 	await redPacket(); //过期红包
 	// console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
 	// console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
