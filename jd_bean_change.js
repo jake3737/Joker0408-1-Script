@@ -115,6 +115,7 @@ async function showMsg() {
     if ($.expenseBean != 0) {
     ReturnMessage+= ` || ${$.expenseBean}京豆`;
 	}
+    ReturnMessage += `\n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆`;
     if ($.expirejingdou != 0) {
     ReturnMessage+= ` || 临期${$.expirejingdou}京豆`;
