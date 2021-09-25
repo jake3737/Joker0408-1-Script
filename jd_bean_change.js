@@ -114,7 +114,7 @@ async function showMsg() {
 
     ReturnMessage+=`🐶今日收支：收${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
-    ReturnMessage += `||支${$.todayOutcomeBean}京豆`;
+    ReturnMessage+= `|支${$.todayOutcomeBean}京豆`;
 	}
     ReturnMessage += `\n`;
     if($.expirejingdou!=0){
@@ -122,7 +122,7 @@ async function showMsg() {
 	}
     ReturnMessage+=`🐶昨日收支：收${$.incomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
-    ReturnMessage += `||支${$.expenseBean}京豆`;
+    ReturnMessage+= `|支${$.expenseBean}京豆`;
 	}
     ReturnMessage += `\n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n——|——|——\n`;
