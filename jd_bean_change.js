@@ -117,7 +117,6 @@ if ($.todayOutcomeBean != 0) {
     ReturnMessage += `||支${$.todayOutcomeBean}京豆`;
 	}
     ReturnMessage += `\n`;
-	}
     if($.expirejingdou!=0){
     ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆\n`;
 	}
@@ -126,7 +125,6 @@ if ($.todayOutcomeBean != 0) {
     ReturnMessage += `||支${$.expenseBean}京豆`;
 	}
     ReturnMessage += `\n`;
-	}
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n——|——|——\n`;
     if ($.jdCash != 0) {
     ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
