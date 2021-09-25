@@ -108,21 +108,21 @@ async function showMsg() {
 
     ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
-    ReturnMessage+= ` || ${$.todayOutcomeBean}京豆`;
+    ReturnMessage+= `  ||  ${$.todayOutcomeBean}京豆`;
 	}
     ReturnMessage += `\n`;
     ReturnMessage+=`🐶昨日收支：${$.incomeBean}京豆`;
     if ($.expenseBean != 0) {
-    ReturnMessage+= ` || ${$.expenseBean}京豆`;
+    ReturnMessage+= `  ||  ${$.expenseBean}京豆`;
 	}
     ReturnMessage += `\n`;
-    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆`;
     if ($.expirejingdou != 0) {
-    ReturnMessage+= ` || 临期${$.expirejingdou}京豆`;
+    ReturnMessage+=`🐶临期京豆：${$.expirejingdou}京豆\n`;
 	}
+    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆`;
     ReturnMessage+= `\n——|——|——\n`;
     if ($.jdCash != 0) {
-    ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
+    ReturnMessage +=`💴签到现金：${$.jdCash}元\n`;
     }
     if($.JdMsScore!=0){
     ReturnMessage+=`💰京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
