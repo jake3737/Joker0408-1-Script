@@ -113,7 +113,7 @@ async function showMsg() {
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
 
     ReturnMessage+=`🐶今日收支：收${$.todayIncomeBean}京豆`;
-if ($.todayOutcomeBean != 0) {
+    if ($.todayOutcomeBean != 0) {
     ReturnMessage += `||支${$.todayOutcomeBean}京豆`;
 	}
     ReturnMessage += `\n`;
@@ -121,7 +121,7 @@ if ($.todayOutcomeBean != 0) {
     ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆\n`;
 	}
     ReturnMessage+=`🐶昨日收支：收${$.incomeBean}京豆`;
-if ($.todayOutcomeBean != 0) {
+    if ($.todayOutcomeBean != 0) {
     ReturnMessage += `||支${$.expenseBean}京豆`;
 	}
     ReturnMessage += `\n`;
