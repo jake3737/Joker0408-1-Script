@@ -108,17 +108,17 @@ async function showMsg() {
 
     ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
-    ReturnMessage+= `  ||  ${$.todayOutcomeBean}京豆`;
-	}
+    ReturnMessage+= ` || ${$.todayOutcomeBean}京豆`;
+    }
     ReturnMessage += `\n`;
     ReturnMessage+=`🐶昨日收支：${$.incomeBean}京豆`;
     if ($.expenseBean != 0) {
-    ReturnMessage+= `  ||  ${$.expenseBean}京豆`;
-	}
+    ReturnMessage+= ` || ${$.expenseBean}京豆`;
+    }
     ReturnMessage += `\n`;
     if ($.expirejingdou != 0) {
     ReturnMessage+=`🐶临期京豆：${$.expirejingdou}京豆\n`;
-	}
+    }
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆`;
     ReturnMessage+= `\n——|——|——\n`;
     if ($.jdCash != 0) {
@@ -134,12 +134,12 @@ async function showMsg() {
     ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|——|——\n`;
     }
     if (typeof $.JDEggcnt !== "undefined") {
-		if ($.JDEggcnt == 0) {
-			ReturnMessage += ``;
+    if ($.JDEggcnt == 0) {
+    ReturnMessage += ``;
 		} else {
-			ReturnMessage += `🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
-		}
-	}
+    ReturnMessage += `🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
+    }
+    }
     if($.JdFarmProdName != ""){
     if ($.jxFactoryInfo) {
     ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
