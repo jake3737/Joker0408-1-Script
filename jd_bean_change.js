@@ -442,7 +442,7 @@ function queryexpirejingdou() {
                             data['expirejingdou'].map(item => {
                                 console.log(`${timeFormat(item['time'] * 1000)}日过期京豆：${item['expireamount']}\n`);
                             })
-                            $.expirejingdou = data['expirejingdou'][7]['expireamount'];
+                            $.expirejingdou = data['expirejingdou'][0]['expireamount'];
                             // if ($.expirejingdou > 0) {
                             //   $.message += `\n今日将过期：${$.expirejingdou}京豆 🐶`;
                             // }
