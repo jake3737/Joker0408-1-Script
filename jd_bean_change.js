@@ -111,20 +111,17 @@ async function showMsg() {
 
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
-
-    ReturnMessage+=`🐶今日收支：收${$.todayIncomeBean}京豆`;
-    if ($.todayOutcomeBean != 0) {
-    ReturnMessage+= `|支${$.todayOutcomeBean}京豆`;
+    ReturnMessage+=`🐶今日收入：${$.todayIncomeBean}京豆 \n`;
+    if($.todayOutcomeBean!=0){
+    ReturnMessage+=`🐶今日支出：${$.todayOutcomeBean}京豆\n`;
 	}
-    ReturnMessage += `\n`;
     if($.expirejingdou!=0){
     ReturnMessage+=`🐶今日过期：${$.expirejingdou}京豆\n`;
 	}
-    ReturnMessage+=`🐶昨日收支：收${$.incomeBean}京豆`;
-    if ($.todayOutcomeBean != 0) {
-    ReturnMessage+= `|支${$.expenseBean}京豆`;
+    ReturnMessage+=`🐶昨日收入：${$.incomeBean}京豆 \n`;
+    if($.expenseBean!=0){
+    ReturnMessage+=`🐶昨天支出：${$.expenseBean}京豆\n`;
 	}
-    ReturnMessage += `\n`;
     ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆\n——|——|——\n`;
     if ($.jdCash != 0) {
     ReturnMessage += `💴签到现金：${$.jdCash}元\n`;
