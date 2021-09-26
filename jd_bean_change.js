@@ -416,7 +416,9 @@ function TotalBean2() {
 								$.nickName = userInfo.petName;
 							if ($.beanCount == 0) {
 								$.beanCount = userInfo.jingBean;
-							$.JingXiang =       userInfo. uclass;
+								$.isPlusVip = 3;
+							}
+							$.JingXiang = userInfo.uclass;
 						}
 					} else {
 						$.log('京东服务器返回空数据');
@@ -431,7 +433,6 @@ function TotalBean2() {
 		});
 	});
 }
-
 function getJingBeanBalanceDetail(page) {
     return new Promise(async resolve => {
         const options = {
