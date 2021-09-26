@@ -60,7 +60,9 @@ if ($.isNode()) {
             $.JDtotalcash=0;
             $.JDEggcnt=0;
             $.Jxmctoken='';
+            $.JingXiang = "";
             await TotalBean();
+            await TotalBean2();
             console.log(`\n********开始【京东账号${$.index}】${$.nickName || $.UserName}******\n`);
             if (!$.isLogin) {
                 $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -105,7 +107,7 @@ async function showMsg() {
     if ($.errorMsg) return
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
-
+    ReturnMessage+=`🐵账号京享：${$.JingXiang}\n`;
     ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
     ReturnMessage+= ` || ${$.todayOutcomeBean}京豆`;
@@ -379,6 +381,57 @@ function TotalBean() {
         })
     })
 }
+
+function TotalBean2() {
+	return new Promise(async(resolve) => {
+		const options = {
+			url: `https://wxapp.m.jd.com/kwxhome/myJd/home.json?&useGuideModule=0&bizId=&brandId=&fromType=wxapp&timestamp=${Date.now()}`,
+			headers: {
+				Cookie: cookie,
+				'content-type': `application/x-www-form-urlencoded`,
+				Connection: `keep-alive`,
+				'Accept-Encoding': `gzip,compress,br,deflate`,
+				Referer: `https://servicewechat.com/wxa5bf5ee667d91626/161/page-frame.html`,
+				Host: `wxapp.m.jd.com`,
+				'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.10(0x18000a2a) NetType/WIFI Language/zh_CN`,
+			},
+		};
+		$.post(options, (err, resp, data) => {
+			try {
+				if (err) {
+					$.logErr(err);
+				} else {
+					if (data) {
+						data = JSON.parse(data);
+						if (!data.user) {
+							$.isLogin = false; //cookie过期
+							return;
+						}
+						const userInfo = data.user;
+
+						if (userInfo) {
+							if (!$.nickName)
+								$.nickName = userInfo.petName;
+							if ($.beanCount == 0) {
+								$.beanCount = userInfo.jingBean;
+								$.isPlusVip = 3;
+							}
+							$.JingXiang = userInfo.uclass;
+						}
+					} else {
+						$.log('京东服务器返回空数据');
+					}
+				}
+			} catch (e) {
+				$.logErr(e);
+			}
+			finally {
+				resolve();
+			}
+		});
+	});
+}
+
 function getJingBeanBalanceDetail(page) {
     return new Promise(async resolve => {
         const options = {
