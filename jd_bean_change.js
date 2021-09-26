@@ -592,10 +592,7 @@ function redPacket() {
     $.message += `(今日过期${$.jdhRedExpire.toFixed(2)})`;
     $.message += `元\n`;
     if ($.balance > 0)
-    $.message += `🧧总计红包：${$.balance}`;
-    if ($.expiredBalance > 0)
-    $.message += `(今日过期${$.expiredBalance.toFixed(2)})`;
-    $.message += `元\n`;
+    $.message += `🧧总计红包：${$.balance}(今日过期${$.expiredBalance.toFixed(2)})元\n`;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
