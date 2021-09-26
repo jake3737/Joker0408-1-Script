@@ -124,7 +124,7 @@ async function showMsg() {
     ReturnMessage+=`| 即将过期：${$.expirejingdou}京豆\n`;
     }
     ReturnMessage+=`| 总计京豆：${$.beanCount}京豆`;
-    ReturnMessage+= `\n——|——|——\n`;
+    ReturnMessage+= `\n——|—|——\n`;
     if ($.jdCash != 0) {
     ReturnMessage +=`| 签到现金：${$.jdCash}元\n`;
     }
@@ -135,7 +135,7 @@ async function showMsg() {
     ReturnMessage+=`| 京东赚赚：${$.JdzzNum}枚(${$.JdzzNum / 10000}元)\n`;
     }
     if(typeof $.JDtotalcash !== "undefined"){
-    ReturnMessage+=`| 极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|——|——\n`;
+    ReturnMessage+=`| 极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|—|——\n`;
     }
     if (typeof $.JDEggcnt !== "undefined") {
     if ($.JDEggcnt == 0) {
@@ -166,7 +166,7 @@ async function showMsg() {
     ReturnMessage+=`| 东东农场：${$.JdFarmProdName}\n`;
     }
     }
-    ReturnMessage+=`——|——|——\n`;
+    ReturnMessage+=`——|—|——\n`;
     ReturnMessage+=`${$.message}`;
     allMessage+=ReturnMessage;
     $.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
@@ -565,22 +565,37 @@ function redPacket() {
                                 }
                             }
                         }
-
-                        $.jdRed = $.jdRed.toFixed(2)
-                        $.jxRed = $.jxRed.toFixed(2)
-                        $.jsRed = $.jsRed.toFixed(2)
-                        $.jdhRed = $.jdhRed.toFixed(2)
-                        $.balance = data.balance
-                        $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
+    $.jdRed = $.jdRed.toFixed(2)
+    $.jxRed = $.jxRed.toFixed(2)
+    $.jsRed = $.jsRed.toFixed(2)
+    $.jdhRed = $.jdhRed.toFixed(2)
+    $.balance = data.balance
+    $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
     if ($.jdRed > 0)
-    $.message += `| 京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n`;
+    $.message += `| 京东红包：${$.jdRed}`;
+    if ($.jdRedExpire > 0)
+    $.message += `(今日过期${$.jdRedExpire.toFixed(2)})`;
+    ReturnMessage += `元\n`;
     if ($.jxRed > 0)
-    $.message += `| 京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n`;
+    $.message += `| 京喜红包：${$.jxRed}`;
+    if ($.jxRedExpire > 0)
+    $.message += `(今日过期${$.jxRedExpire.toFixed(2)})`;
+    ReturnMessage += `元\n`;
     if ($.jsRed > 0)
-    $.message += `| 极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n`;
+    $.message += `| 极速红包：${$.jsRed}`;
+    if ($.jsRedExpire > 0)
+    $.message += `(今日过期${$.jsRedExpire.toFixed(2)})`;
+    ReturnMessage += `元\n`;
     if ($.jdhRed > 0)
-    $.message += `| 健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
-    $.message += `| 总计红包：${$.balance}(今日过期${$.expiredBalance})元 \n`;
+    $.message += `| 健康红包：${$.jdhRed}`;
+    if ($.jdhRedExpire > 0)
+    $.message += `(今日过期${$.jdhRedExpire.toFixed(2)})`;
+    ReturnMessage += `元\n`;
+    if ($.balance > 0)
+    $.message += `| 总计红包：${$.balance}`;
+    if ($.expiredBalance > 0)
+    $.message += `(今日过期${$.expiredBalance.toFixed(2)})`;
+    ReturnMessage += `元\n`;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
