@@ -107,8 +107,8 @@ async function showMsg() {
     if ($.errorMsg) return
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
-    if ($.JingXiang != 0) {
-    ReturnMessage+=`🐵账号信息：(${(JingXiang).toFixed(0)})\n`;
+    if ($.JingXiang != toFixed(0)) {
+    ReturnMessage+=`🐵账号信息：$JingXiang\n`;
     }
     ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
