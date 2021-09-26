@@ -60,7 +60,7 @@ if ($.isNode()) {
             $.JDtotalcash=0;
             $.JDEggcnt=0;
             $.Jxmctoken='';
-            $.JingXiang = "";
+            $.JingXiang = 0;
             await TotalBean();
             await TotalBean2();
             console.log(`\n********开始【京东账号${$.index}】${$.nickName || $.UserName}******\n`);
