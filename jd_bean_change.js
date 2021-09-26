@@ -11,7 +11,6 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent =  $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``):``;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-BEAN_CHANGE_NOTIFYTIP
 const notifyTip = $.isNode() ? process.env.BEAN_CHANGE_NOTIFYTIP : true;
 let allMessage = '';
 let ReturnMessage = '';
