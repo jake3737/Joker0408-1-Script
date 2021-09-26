@@ -416,7 +416,7 @@ function TotalBean2() {
 								$.beanCount = userInfo.jingBean;
 								$.isPlusVip = 3;
 							}
-							$.JingXiang = userInfo.uclass;
+							$.JingXiang = uclass;
 						}
 					} else {
 						$.log('京东服务器返回空数据');
