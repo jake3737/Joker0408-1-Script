@@ -11,7 +11,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent =  $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``):``;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notifyTip = $.isNode() ? process.env.BEAN_CHANGE_NOTIFYTIP : true;
+const notifyTip = $.isNode() ? process.env.BEAN_CHANGE_NOTIFYTIP : false;
 let allMessage = '';
 let ReturnMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
@@ -106,64 +106,64 @@ if ($.isNode()) {
 async function showMsg() {
     if ($.errorMsg) return
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
-    ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
+    ReturnMessage+=`| 账号昵称：${$.nickName || $.UserName}\n`;
     if ($.JingXiang != 0) {
-    ReturnMessage+=`🐵账号信息：${$.JingXiang}\n`;
+    ReturnMessage+=`| 账号信息：${$.JingXiang}\n`;
     }
-    ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
+    ReturnMessage+=`| 今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
     ReturnMessage+= ` || ${$.todayOutcomeBean}京豆`;
     }
     ReturnMessage += `\n`;
-    ReturnMessage+=`🐶昨日收支：${$.incomeBean}京豆`;
+    ReturnMessage+=`| 昨日收支：${$.incomeBean}京豆`;
     if ($.expenseBean != 0) {
     ReturnMessage+= ` || ${$.expenseBean}京豆`;
     }
     ReturnMessage += `\n`;
     if ($.expirejingdou != 0) {
-    ReturnMessage+=`🐶即将过期：${$.expirejingdou}京豆\n`;
+    ReturnMessage+=`| 即将过期：${$.expirejingdou}京豆\n`;
     }
-    ReturnMessage+=`🐶总计京豆：${$.beanCount}京豆`;
+    ReturnMessage+=`| 总计京豆：${$.beanCount}京豆`;
     ReturnMessage+= `\n——|——|——\n`;
     if ($.jdCash != 0) {
-    ReturnMessage +=`💴签到现金：${$.jdCash}元\n`;
+    ReturnMessage +=`| 签到现金：${$.jdCash}元\n`;
     }
     if($.JdMsScore!=0){
-    ReturnMessage+=`💰京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
+    ReturnMessage+=`| 京东秒杀：${$.JdMsScore}枚(${$.JdMsScore / 1000}元)\n`;
     }
     if(typeof $.JdzzNum !== "undefined"){
-    ReturnMessage+=`💰京东赚赚：${$.JdzzNum}枚(${$.JdzzNum / 10000}元)\n`;
+    ReturnMessage+=`| 京东赚赚：${$.JdzzNum}枚(${$.JdzzNum / 10000}元)\n`;
     }
     if(typeof $.JDtotalcash !== "undefined"){
-    ReturnMessage+=`💰极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|——|——\n`;
+    ReturnMessage+=`| 极速金币：${$.JDtotalcash}枚(${$.JDtotalcash / 10000}元)\n——|——|——\n`;
     }
     if (typeof $.JDEggcnt !== "undefined") {
     if ($.JDEggcnt == 0) {
     ReturnMessage += ``;
 		} else {
-    ReturnMessage += `🐮京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
+    ReturnMessage += `| 京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
     }
     }
     if($.JdFarmProdName != ""){
     if ($.jxFactoryInfo) {
-    ReturnMessage+= `🏭京喜工厂：${$.jxFactoryInfo}\n`
+    ReturnMessage+= `| 京喜工厂：${$.jxFactoryInfo}\n`
     }
     const response = await await PetRequest('energyCollect');
     const initPetTownRes = await PetRequest('initPetTown');
     if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
         $.petInfo = initPetTownRes.result;
     if (response.resultCode === '0') {
-    ReturnMessage += `🐹东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
-    ReturnMessage += `🐹萌宠进度：(${(response.result.medalPercent).toFixed(2)}%),勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
+    ReturnMessage += `| 东东萌宠：${$.petInfo.goodsInfo.goodsName}\n`;
+    ReturnMessage += `| 萌宠进度：(${(response.result.medalPercent).toFixed(2)}%),勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块\n`;
     }
-    ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n👨‍🌾农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
+    ReturnMessage+=`| 东东农场：${$.JdFarmProdName}\n| 农场进度：(${(($.JdtreeEnergy / $.JdtreeTotalEnergy) * 100).toFixed(2)}%)`;
              if($.JdwaterD!='Infinity' && $.JdwaterD!='-Infinity'){
     ReturnMessage+=`,${$.JdwaterD === 1 ? '明天' : $.JdwaterD === 2 ? '后天' : $.JdwaterD + '天'}可兑换\n`;
             } else {
     ReturnMessage+=`\n`;
             }
         } else {
-    ReturnMessage+=`👨‍🌾东东农场：${$.JdFarmProdName}\n`;
+    ReturnMessage+=`| 东东农场：${$.JdFarmProdName}\n`;
     }
     }
     ReturnMessage+=`——|——|——\n`;
@@ -573,14 +573,14 @@ function redPacket() {
                         $.balance = data.balance
                         $.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2)
     if ($.jdRed > 0)
-    $.message += `🧧京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n`;
+    $.message += `| 京东红包：${$.jdRed}(今日过期${$.jdRedExpire.toFixed(2)})元 \n`;
     if ($.jxRed > 0)
-    $.message += `🧧京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n`;
+    $.message += `| 京喜红包：${$.jxRed}(今日过期${$.jxRedExpire.toFixed(2)})元 \n`;
     if ($.jsRed > 0)
-    $.message += `🧧极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n`;
+    $.message += `| 极速红包：${$.jsRed}(今日过期${$.jsRedExpire.toFixed(2)})元 \n`;
     if ($.jdhRed > 0)
-    $.message += `🧧健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
-    $.message += `🧧总计红包：${$.balance}(今日过期${$.expiredBalance})元 \n`;
+    $.message += `| 健康红包：${$.jdhRed}(今日过期${$.jdhRedExpire.toFixed(2)})元 `;
+    $.message += `| 总计红包：${$.balance}(今日过期${$.expiredBalance})元 \n`;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
@@ -942,10 +942,10 @@ function getJxFactory() {
                                     $.commodityDimId = production.commodityDimId;
                                     // subTitle = data.user.pin;
                                     await GetCommodityDetails();//获取已选购的商品信息
-                                    infoMsg = `${$.jxProductName}\n🏭工厂进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
+                                    infoMsg = `${$.jxProductName}\n| 工厂进度：(${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%)`;
                                     if (production.investedElectric >= production.needElectric) {
                                         if (production['exchangeStatus'] === 1) {
-                                            infoMsg = `${$.productName}\n🏭工厂进度：已经完成生产,可兑换`;
+                                            infoMsg = `${$.productName}\n| 工厂进度：已经完成生产,可兑换`;
                                         }
                                         if (production['exchangeStatus'] === 3) {
                                             if (new Date().getHours() === 9) {
