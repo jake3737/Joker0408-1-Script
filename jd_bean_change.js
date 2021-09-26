@@ -60,7 +60,7 @@ if ($.isNode()) {
             $.JDtotalcash=0;
             $.JDEggcnt=0;
             $.Jxmctoken='';
-            $.JingXiang ='';
+            $.jxScore='';
             await TotalBean();
             await TotalBean2();
             console.log(`\n********开始【京东账号${$.index}】${$.nickName || $.UserName}******\n`);
@@ -107,8 +107,8 @@ async function showMsg() {
     if ($.errorMsg) return
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
-    if ($.JingXiang != 0) {
-    ReturnMessage+=`🐵账号信息：${$.JingXiang}\n`;
+    if ($.jxScore != 0) {
+    ReturnMessage+=`🐵账号信息：${$.jxScore}\n`;
     }
     ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
@@ -418,7 +418,7 @@ function TotalBean2() {
 								$.beanCount = userInfo.jingBean;
 								$.isPlusVip = 3;
 							}
-							$.JingXiang = userInfo.uclass;
+							$.jxScore = userInfo.uclass;
 						}
 					} else {
 						$.log('京东服务器返回空数据');
