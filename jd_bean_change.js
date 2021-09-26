@@ -107,7 +107,9 @@ async function showMsg() {
     if ($.errorMsg) return
     ReturnMessage=`===== [京东账号${$.index}] =====\n\n`
     ReturnMessage+=`🐵账号昵称：${$.nickName || $.UserName}\n`;
-    ReturnMessage+=`🐵账号京享：${$.JingXiang}\n`;
+    if ($.JingXiang != 0) {
+    ReturnMessage+=`🐵账号信息：${$.JingXiang}\n`;
+    }
     ReturnMessage+=`🐶今日收支：${$.todayIncomeBean}京豆`;
     if ($.todayOutcomeBean != 0) {
     ReturnMessage+= ` || ${$.todayOutcomeBean}京豆`;
@@ -414,9 +416,7 @@ function TotalBean2() {
 								$.nickName = userInfo.petName;
 							if ($.beanCount == 0) {
 								$.beanCount = userInfo.jingBean;
-								$.isPlusVip = 3;
-							}
-							$.JingXiang = uclass;
+							$.JingXiang =       userInfo. uclass;
 						}
 					} else {
 						$.log('京东服务器返回空数据');
