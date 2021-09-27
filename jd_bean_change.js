@@ -11,7 +11,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent =  $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``):``;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notifyTip = $.isNode() ? process.env.BEAN_CHANGE_NOTIFYTIP : false;
+const notifyTip = $.isNode() ? process.env.BEAN_CHANGE_NOTIFYTIP : ``;
 let allMessage = '';
 let ReturnMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
@@ -63,7 +63,7 @@ if ($.isNode()) {
             $.JingXiang ='';
             await TotalBean();
             await TotalBean2();
-            console.log(`\n********开始【京东账号${$.index}】${$.nickName || $.UserName}******\n`);
+            console.log(`\n===== 开始【京东账号${$.index}】${$.nickName || $.UserName} =====\n`);
             if (!$.isLogin) {
                 $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
@@ -574,31 +574,31 @@ function redPacket() {
     if ($.jdRed > 0)
     $.message += `🧧京东红包：${$.jdRed}元`;
     if ($.jdRedExpire > 0)
-    $.message += ` || 临期：${$.jdRedExpire.toFixed(2)}元`;
+    $.message += ` || 到期:${$.jdRedExpire.toFixed(2)}元`;
     if ($.jdRed > 0)
     $.message += `\n`;
     if ($.jxRed > 0)
     $.message += `🧧京喜红包：${$.jxRed}元`;
     if ($.jxRedExpire > 0)
-    $.message += ` || 临期：${$.jxRedExpire.toFixed(2)}元`;
+    $.message += ` || 到期：${$.jxRedExpire.toFixed(2)}元`;
     if ($.jxRed > 0)
     $.message += `\n`;
     if ($.jsRed > 0)
     $.message += `🧧极速红包：${$.jsRed}元`;
     if ($.jsRedExpire > 0)
-    $.message += ` || 临期：${$.jsRedExpire.toFixed(2)}元`;
+    $.message += ` || 到期：${$.jsRedExpire.toFixed(2)}元`;
     if ($.jsRed > 0)
     $.message += `\n`;
     if ($.jdhRed > 0)
     $.message += `🧧健康红包：${$.jdhRed}元`;
     if ($.jdhRedExpire > 0)
-    $.message += ` || 临期：${$.jdhRedExpire.toFixed(2)}元`;
+    $.message += ` || 到期：${$.jdhRedExpire.toFixed(2)}元`;
     if ($.jdhRed > 0)
     $.message += `\n`;
     if ($.balance > 0)
     $.message += `🧧总计红包：${$.balance}元`;
     if ($.expiredBalance > 0)
-    $.message += ` || 临期：${$.expiredBalance}元\n`;
+    $.message += ` || 到期：${$.expiredBalance}元\n`;
                     } else {
                         console.log(`京东服务器返回空数据`)
                     }
