@@ -575,21 +575,25 @@ function redPacket() {
     $.message += `🧧京东红包：${$.jdRed}元`;
     if ($.jdRedExpire > 0)
     $.message += ` || 临期：${$.jdRedExpire.toFixed(2)}元`;
+    if ($.jdRed > 0)
     $.message += `\n`;
     if ($.jxRed > 0)
     $.message += `🧧京喜红包：${$.jxRed}元`;
     if ($.jxRedExpire > 0)
     $.message += ` || 临期：${$.jxRedExpire.toFixed(2)}元`;
+    if ($.jxRed > 0)
     $.message += `\n`;
     if ($.jsRed > 0)
     $.message += `🧧极速红包：${$.jsRed}元`;
     if ($.jsRedExpire > 0)
     $.message += ` || 临期：${$.jsRedExpire.toFixed(2)}元`;
+    if ($.jsRed > 0)
     $.message += `\n`;
     if ($.jdhRed > 0)
     $.message += `🧧健康红包：${$.jdhRed}元`;
     if ($.jdhRedExpire > 0)
     $.message += ` || 临期：${$.jdhRedExpire.toFixed(2)}元`;
+    if ($.jdhRed > 0)
     $.message += `\n`;
     if ($.balance > 0)
     $.message += `🧧总计红包：${$.balance}元`;
